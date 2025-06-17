@@ -47,7 +47,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
 import classroom1 from '@/assets/classroomphoto1.jpg'
-import classroom2 from '@/assets/classroomphoto2.JPG'
+import classroom2 from '@/assets/classroomphoto2.jpeg'
 import classroom3 from '@/assets/classroomphoto3.jpeg'
 import classroom4 from '@/assets/classroomphoto4.jpeg'
 

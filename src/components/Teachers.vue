@@ -33,8 +33,8 @@
 
 <script setup>
 import TeacherProfile from './TeacherProfile.vue'
-import photoKaren from '@/assets/teacherkaren.JPG'
-import photoPengRong from '@/assets/teacherpengrong.JPG'
+import photoKaren from '@/assets/teacherkaren.jpeg'
+import photoPengRong from '@/assets/teacherpengrong.jpeg'
 </script>
 
 <style scoped>

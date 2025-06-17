@@ -5,6 +5,7 @@
     <Teachers />
     <ClassList />
     <Testimonials />
+    <ProudStudents />
     <FooterSection />
     <WhatsAppButton />
   </div>
@@ -18,4 +19,5 @@ import ClassList from '@/components/Classlist.vue'
 import Testimonials from '@/components/Testimonials.vue'
 import FooterSection from '@/components/FooterSection.vue'
 import WhatsAppButton from '@/components/WhatsappButton.vue'
+import ProudStudents from './ProudStudents.vue'
 </script>

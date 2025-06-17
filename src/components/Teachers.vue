@@ -1,21 +1,35 @@
 <template>
   <section id="teachers" class="teachers">
-    <h2>Our Teachers</h2>
+    <h2>Our Teachers 👩🏻‍🏫 </h2>
+
     <TeacherProfile
-      name="Teacher Karen"
+      name="Teacher Karen 👩🏻‍🏫"
       :photo="photoKaren"
-      experience="10 years teaching Primary Math. Previously a MOE teacher."
-      philosophy="Every child learns differently. My role is to inspire curiosity and build confidence."
+      :experienceList="[
+        'Full Time Educator',
+        '5 Years of Teaching Experience',
+        'Primary Level: English, Math and Science',
+        'Secondary Level: Math and Science',
+        'Helped over 120 students improve their grades'
+      ]"
+      philosophy="&quot;I believe in being firm and focused during lessons so every student stays on track — but outside of class, I connect with my students like a friend. Beyond just academics, I’m always here to listen, encourage, and help them grow with confidence.&quot;"
     />
+
     <TeacherProfile
-      name="Teacher Peng Rong"
+      name="Teacher Peng Rong 🧑🏻‍🏫"
       :photo="photoPengRong"
-      experience="Specialized in Secondary Science and Math. Worked with over 200 students."
-      philosophy="I focus on teaching from first principles so students understand 'why', not just 'what'."
+      :experienceList="[
+        'Part Time Tutor (NUS Business Analytics Undergraduate)',
+        '3 Years of Teaching Experience',
+        'Upper Secondary Level: Math, Amath, Chemistry, Physics',
+        'Helped over 40 students improve their grades'
+      ]"
+      philosophy="&quot;I focus on delivering concepts in a way that’s easy to understand — using real-life examples and analogies so it clicks. Once students truly get it, it sticks.&quot;"
       :reverse-layout="true"
     />
   </section>
 </template>
+
 
 <script setup>
 import TeacherProfile from './TeacherProfile.vue'
@@ -25,15 +39,15 @@ import photoPengRong from '@/assets/teacherpengrong.JPG'
 
 <style scoped>
 .teachers {
-  padding: 2rem;
-  background-color: #f6f4fd;
+  padding: 4rem 2rem;
   text-align: center;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
 }
 
 .teachers h2 {
-  font-size: 2.5rem;
-  color: #4c1d95;
+  font-size: 2.8rem;
+  color: #111;
   margin-bottom: 3rem;
-  font-weight: 800;
+  font-weight: 900;
 }
 </style>

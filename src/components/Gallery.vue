@@ -5,7 +5,7 @@
       <div class="gallery-left">
         <h2 class="title">Tuition @ Pioneer</h2>
         <p class="subtitle">
-          We provide <span class="highlight">quality</span> and <span class="highlight">affordable</span> tuition
+          We provide <strong>quality</strong> and <strong>affordable</strong> tuition
           to help students improve academically and confidently.
         </p>
         <a
@@ -45,6 +45,7 @@ import 'swiper/css/pagination'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+
 import classroom1 from '@/assets/classroomphoto1.jpg'
 import classroom2 from '@/assets/classroomphoto2.JPG'
 import classroom3 from '@/assets/classroomphoto3.jpeg'
@@ -55,33 +56,34 @@ const images = [classroom1, classroom2, classroom3, classroom4]
 
 <style scoped>
 .gallery {
-  height: 100vh;
-  background: #6f2cf4; /* Timely purple */
+  width: 100%;
+  overflow-x: hidden;
+  padding: 2rem 1rem 4rem;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
-  color: white;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+  height: 100vh;
+  max-height: 100vh;
 }
 
+/* Container layout for desktop */
 .container {
   max-width: 1200px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
 }
 
-.gallery-left {
-  flex: 1;
-  text-align: left;
-  padding: 1rem;
-}
-
+.gallery-left,
 .gallery-right {
-  flex: 1;
+  flex: 1 1 48%;
   min-width: 0;
 }
 
@@ -89,19 +91,13 @@ const images = [classroom1, classroom2, classroom3, classroom4]
   font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: 1.5rem;
-  color: white;
+  color: #000;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  color: #f3e8ff;
+  color: #333;
   line-height: 1.7;
-}
-
-.highlight {
-  color: #00ffa3;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(0, 255, 163, 0.3);
 }
 
 .cta-outline-button {
@@ -110,46 +106,65 @@ const images = [classroom1, classroom2, classroom3, classroom4]
   padding: 0.9rem 2rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #6f2cf4;
+  color: #000;
   background-color: white;
-  border: 2px solid #6f2cf4;
+  border: 2px solid #000;
   border-radius: 16px;
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(111, 44, 244, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cta-outline-button:hover {
-  background-color: #f3e8ff;
-  color: #4c1d95;
+  background-color: #000;
+  color: #fff;
   transform: translateY(-2px);
 }
 
 .gallery-img {
   width: 100%;
-  height: 500px;
+  height: 400px;
   object-fit: cover;
   border-radius: 16px;
 }
 
+/* ✅ MOBILE FIX */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .gallery-left,
+  .gallery-right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .gallery {
+    padding-top: 1rem; /* Previously might be too large */
+    padding-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    margin-top: 0.5rem; /* Reduce gap after navbar */
+    margin-bottom: 1rem; /* Reduce space before subtitle */
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem; /* Reduce space before button */
+  }
+
+  .cta-outline-button {
+    margin-top: 1rem; /* Reduce from 2rem */
   }
 
   .gallery-img {
     height: auto;
     max-height: 280px;
   }
-
-  .title {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-  }
 }
+
 </style>

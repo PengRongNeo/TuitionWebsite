@@ -21,7 +21,7 @@
     <!-- Mobile Nav Overlay -->
     <div class="mobile-nav" v-if="menuOpen">
       <button class="close-btn" @click="toggleMenu">×</button>
-      <a href="#gallery" @click="toggleMenu">Gallery</a>
+      <a href="#gallery" @click="toggleMenu">Sign Up</a>
       <a href="#teachers" @click="toggleMenu">Teachers</a>
       <a href="#classes" @click="toggleMenu">Classes</a>
       <a href="#testimonials" @click="toggleMenu">Testimonials</a>

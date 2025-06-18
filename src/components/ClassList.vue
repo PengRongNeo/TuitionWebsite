@@ -1,20 +1,23 @@
 <template>
   <section id="classes" class="classes">
-    <h2>Subjects 📚 & Rates 💵</h2>
-    <div class="card-grid">
-      <div class="class-card" v-for="(item, index) in classRates" :key="index">
-        <h3>{{ item.level }}</h3>
-        <p class="subjects">📚
-          <span v-for="(subject, i) in item.subjects" :key="i">
-            {{ subject }}<span v-if="i < item.subjects.length - 1">, </span>
-          </span>
-        </p>
-        <p class="rate">💵 {{ item.rate }}/h</p>
+    <div class="container">
+      <h2>Subjects 📚 & Rates 💵</h2>
+      <div class="card-grid">
+        <div class="class-card" v-for="(item, index) in classRates" :key="index">
+          <h3>{{ item.level }}</h3>
+          <p class="subjects">📚
+            <span v-for="(subject, i) in item.subjects" :key="i">
+              {{ subject }}<span v-if="i < item.subjects.length - 1">, </span>
+            </span>
+          </p>
+          <p class="rate">💵 {{ item.rate }}/h</p>
+        </div>
       </div>
+      <p class="note">📌 Class times and availability will be shared upon WhatsApp inquiry.</p>
     </div>
-    <p class="note">📌 Class times and availability will be shared upon WhatsApp inquiry.</p>
   </section>
 </template>
+
 
 <script setup>
 const classRates = [
@@ -29,6 +32,13 @@ const classRates = [
 </script>
 
 <style scoped>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem; /* ✅ Side gap */
+  box-sizing: border-box;
+}
+
 .classes {
   padding: 4rem 2rem;
   text-align: center;

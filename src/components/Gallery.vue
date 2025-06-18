@@ -85,7 +85,9 @@ const images = [classroom1, classroom2, classroom3, classroom4]
 .gallery-right {
   flex: 1 1 48%;
   min-width: 0;
+  animation: slideInRight 0.8s ease-out both;
 }
+
 
 .title {
   font-size: 3.5rem;
@@ -126,6 +128,16 @@ const images = [classroom1, classroom2, classroom3, classroom4]
   height: 400px;
   object-fit: cover;
   border-radius: 16px;
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ✅ MOBILE FIX */

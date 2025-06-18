@@ -1,13 +1,21 @@
 <template>
-  <div class="teacher-profile" :class="{ reverse: reverseLayout }">
+  <div
+    ref="observerTarget"
+    class="teacher-profile"
+    :class="[
+      { reverse: reverseLayout },
+      isVisible ? animationClass : ''
+    ]"
+  >
     <div class="teacher-photo">
       <img :src="photo" :alt="name" />
     </div>
 
     <div class="teacher-info">
       <Swiper
-        :modules="[Pagination]"
+        :modules="[Pagination, Navigation]"
         :pagination="{ clickable: true }"
+        navigation
         :space-between="30"
         class="swiper-wrapper"
       >
@@ -32,16 +40,38 @@
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Pagination } from 'swiper/modules'
+import { Pagination, Navigation } from 'swiper/modules'
+import { ref, onMounted } from 'vue'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
-defineProps({
+const props = defineProps({
   name: String,
   photo: String,
   experienceList: Array,
   philosophy: String,
-  reverseLayout: Boolean
+  reverseLayout: Boolean,
+  animationClass: String
+})
+
+const isVisible = ref(false)
+const observerTarget = ref(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true
+        observer.disconnect() // Only run once
+      }
+    },
+    { threshold: 0.2 }
+  )
+
+  if (observerTarget.value) {
+    observer.observe(observerTarget.value)
+  }
 })
 </script>
 
@@ -54,12 +84,44 @@ defineProps({
   justify-content: center;
   margin: 4rem auto;
   max-width: 1100px;
-  padding: 0 1rem; /* ✅ Adds left and right space */
+  padding: 0 1rem;
   font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+  opacity: 0; /* Initially hidden */
 }
 
 .teacher-profile.reverse {
   flex-direction: row-reverse;
+}
+
+/* Animation classes */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
 }
 
 .teacher-photo img {
@@ -112,11 +174,11 @@ defineProps({
   text-align: left;
 }
 
-/* ✅ Mobile Improvements */
+/* Mobile */
 @media (max-width: 768px) {
   .teacher-profile {
     flex-direction: column !important;
-    padding: 0 1.5rem; /* more side padding for mobile */
+    padding: 0 1.5rem;
   }
 
   .teacher-photo img {
@@ -135,5 +197,4 @@ defineProps({
     min-height: auto;
   }
 }
-
 </style>

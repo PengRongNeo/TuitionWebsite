@@ -13,6 +13,7 @@
         'Helped over 120 students improve their grades'
       ]"
       philosophy="&quot;I believe in being firm and focused during lessons so every student stays on track — but outside of class, I connect with my students like a friend. Beyond just academics, I’m always here to listen, encourage, and help them grow with confidence.&quot;"
+      animationClass="slide-in-left"
     />
 
     <TeacherProfile
@@ -26,6 +27,7 @@
       ]"
       philosophy="&quot;I focus on delivering concepts in a way that’s easy to understand — using real-life examples and analogies so it clicks. Once students truly get it, it sticks.&quot;"
       :reverse-layout="true"
+      animationClass="slide-in-right"
     />
   </section>
 </template>

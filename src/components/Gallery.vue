@@ -154,7 +154,7 @@ const images = [classroom1, classroom2, classroom3, classroom4]
   }
 
   .gallery {
-    padding-top: 3rem; /* Previously might be too large */
+    padding-top: 5rem; /* Previously might be too large */
     padding-bottom: 2rem;
   }
 

@@ -6,7 +6,7 @@
         <h2 class="title">Tuition @ Pioneer</h2>
         <p class="subtitle">
           We provide <strong>quality</strong> and <strong>affordable</strong> tuition
-          to help students improve academically and confidently.
+          to help students improve academically and gain confidence.
         </p>
         <a
           class="cta-outline-button"

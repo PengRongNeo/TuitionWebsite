@@ -4,11 +4,11 @@
 
     <!-- Desktop Navigation -->
     <nav class="desktop-nav">
-      <a href="#gallery">Sign Up</a>
       <a href="#teachers">Teachers</a>
       <a href="#classes">Classes</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#footer">Contact</a>
+      <a href="#" @click.prevent="showTerms = true">Cancellation Policy</a>
     </nav>
 
     <!-- Mobile Hamburger Icon -->
@@ -26,6 +26,21 @@
       <a href="#classes" @click="toggleMenu">Classes</a>
       <a href="#testimonials" @click="toggleMenu">Testimonials</a>
       <a href="#footer" @click="toggleMenu">Contact</a>
+      <a href="#" @click.prevent="openTermsMobile">Cancellation Policy</a>
+    </div>
+
+    <!-- Terms Popup -->
+    <div v-if="showTerms" class="terms-popup">
+      <div class="bubble">
+        <button class="close-btn" @click="closeTerms">×</button>
+        <p>
+          📝 <strong>Cancellation Policy for Lessons</strong><br><br>
+          Cancellation of lessons should be <strong>12 hours in advance</strong>.<br><br>
+          If the student is sick and cannot attend, please provide an MC. Otherwise, <strong>last minute cancellations will be charged the full amount.</strong><br><br>
+          Alternatively, please arrange another day for a make-up lesson.<br><br>
+          Thank you for your understanding 🙏🏻
+        </p>
+      </div>
     </div>
   </header>
 </template>
@@ -42,6 +57,13 @@ const handleScroll = () => {
 }
 onMounted(() => window.addEventListener('scroll', handleScroll))
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
+
+const showTerms = ref(false)
+const closeTerms = () => (showTerms.value = false)
+const openTermsMobile = () => {
+  showTerms.value = true
+  menuOpen.value = false
+}
 </script>
 
 <style scoped>
@@ -51,13 +73,13 @@ header {
   width: 100%;
   z-index: 1000;
   padding: 1rem 2rem;
-  background-color: white; /* ✅ Now plain white background */
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: background 0.3s ease;
   font-family: 'Comic Sans MS', 'Comic Neue', sans-serif;
-  backdrop-filter: blur(6px); /* Optional: slight blur */
+  backdrop-filter: blur(6px);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -100,7 +122,6 @@ header.scrolled {
   width: 100%;
 }
 
-
 .hamburger {
   display: none;
   flex-direction: column;
@@ -122,7 +143,7 @@ header.scrolled {
   right: 0;
   height: 100vh;
   width: 70vw;
-  background-color: white; /* ✅ Marble background removed */
+  background-color: white;
   padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
@@ -142,6 +163,47 @@ header.scrolled {
   background: none;
   border: none;
   align-self: flex-end;
+  cursor: pointer;
+}
+
+.terms-popup {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1050;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 300px;
+  background: #fff7dd;
+  color: #333;
+  font-size: 0.95rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  font-family: 'Comic Sans MS', 'Comic Neue', sans-serif;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff7dd;
+}
+
+.bubble .close-btn {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 1.2rem;
+  background: none;
+  border: none;
   cursor: pointer;
 }
 

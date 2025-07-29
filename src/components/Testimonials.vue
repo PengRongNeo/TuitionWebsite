@@ -62,21 +62,32 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 // PSLE Testimonials
-import testimonial1 from '@/assets/psletestimonial1.jpg'
-import testimonial2 from '@/assets/psletestimonial2.jpg'
+import psletestimonial1 from '@/assets/psletestimonial1.jpg'
+import psletestimonial2 from '@/assets/psletestimonial2.jpg'
+import psletestimonial3 from '@/assets/psletestimonial3.jpeg'
 
 // O/N Level Testimonials
-import testimonial11 from '@/assets/olvltestimonial1.jpg'
-import testimonial12 from '@/assets/olvltestimonial2.jpg'
+import olvltestimonial1 from '@/assets/olvltestimonial1.jpg'
+import olvltestimonial2 from '@/assets/olvltestimonial2.jpg'
+import olvltestimonial3 from '@/assets/olvltestimonial3.jpeg'
+import olvltestimonial4 from '@/assets/olvltestimonial4.jpeg'
 
 // Improvement Testimonials
 import improvement1 from '@/assets/improvement1.jpg'
 import improvement2 from '@/assets/improvement2.jpg'
 import improvement3 from '@/assets/improvement3.jpg'
 import improvement4 from '@/assets/improvement4.jpg'
-const psleTestimonials = [testimonial1, testimonial2]
-const secondaryTestimonials = [testimonial11, testimonial12]
-const improvementTestimonials = [improvement1, improvement2, improvement3, improvement4]
+import improvement5 from '@/assets/improvement5.jpeg'
+import improvement6 from '@/assets/improvement6.jpeg'
+import improvement7 from '@/assets/improvement7.jpeg'
+import improvement8 from '@/assets/improvement8.jpeg'
+import improvement9 from '@/assets/improvement9.jpeg'
+import improvement10 from '@/assets/improvement10.jpeg'
+import improvement11 from '@/assets/improvement11.jpeg'
+
+const psleTestimonials = [psletestimonial1, psletestimonial2, psletestimonial3]
+const secondaryTestimonials = [olvltestimonial1, olvltestimonial2, olvltestimonial3, olvltestimonial4]
+const improvementTestimonials = [improvement1, improvement2, improvement3, improvement4,improvement5, improvement6, improvement7, improvement8, improvement9, improvement10, improvement11]
 </script>
 
 <style scoped>

@@ -50,6 +50,7 @@ const students = [
   { name: "Caton Ng", school: "St Anthony's Primary School", achievement: "AL6 to AL2 in Math and Science for PSLE" },
   { name: "Adiv Fikri", school: "Yuan Ching Secondary School", achievement: "C5 Prelims to A2 in O Level Additional Math" },
   { name: "Jaycia Ng", school: "Juying Secondary School", achievement: "F9 in Sec 3 to A2 in N Level Math" },
+  { name: "Christine Yap Ying Xin", school: "Xingnan Primary School", achievement: "AL7 to AL4 in 3 Months" },
 ]
 
 const slidesPerView = ref(1)

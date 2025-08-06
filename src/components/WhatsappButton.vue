@@ -16,7 +16,7 @@
           </button>
         </div>
         <div class="chat-message">
-          <p>Hi there, feel free to let us know if you have any questions.</p>
+          <p>Hi Parents, feel free to let us know if you have any questions. We are here to help 😃 </p>
         </div>
         <div class="chat-pointer"></div>
       </div>
@@ -49,7 +49,8 @@ const showPopup = ref(false)
 
 const showWelcomePopup = () => {
   // Directly open WhatsApp when button is clicked
-  const whatsappUrl = "https://wa.me/6591850641?text=Hi%2C%20I%20would%20like%20to%20have%20tuition%20for%20my%20son%2Fdaughter%20in%20Pri%2FSec%20XXX."
+  const whatsappUrl = "https://wa.me/6591850641?text=Hi%20Teacher%2C%20I%20would%20like%20to%20have%20tuition%20for%20my%20child%20and%20here%20are%20the%20details%21%0AName%20of%20Student%3A%20%0ALevel%3A%20%0ASubjects%20Needed%3A%20%0ASchool%3A%20%0AReady%20to%20Start%20Date%3A"
+
   window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 }
 
@@ -58,7 +59,7 @@ const closePopup = () => {
 }
 
 const openWhatsApp = () => {
-  const whatsappUrl = "https://wa.me/6591850641?text=Hi%2C%20I%20would%20like%20to%20have%20tuition%20for%20my%20son%2Fdaughter%20in%20Pri%2FSec%20XXX."
+  const whatsappUrl = "https://wa.me/6591850641?text=Hi%20Teacher%2C%20I%20would%20like%20to%20have%20tuition%20for%20my%20child%20and%20here%20are%20the%20details%21%0AName%20of%20Student%3A%20%0ALevel%3A%20%0ASubjects%20Needed%3A%20%0ASchool%3A%20%0AReady%20to%20Start%20Date%3A"
   window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
   closePopup()
 }

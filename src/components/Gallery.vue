@@ -1,138 +1,445 @@
 <template>
-  <section id="gallery" class="gallery">
+  <section id="gallery" class="gallery section">
     <div class="container">
-      <!-- Left: Text content -->
-      <div class="gallery-left">
-        <h2 class="title">Tuition @ Pioneer</h2>
-        <p class="subtitle">
-          We provide <strong>quality</strong> and <strong>affordable</strong> tuition
-          to help students <strong>improve with confidence</strong>.
-        </p>
-        <a
-          class="cta-outline-button"
-          href="https://wa.me/6591850641?text=Hi%2C%20I%20would%20like%20to%20sign%20up%20for%20tuition.%20Can%20you%20share%20more%20info%3F"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sign Up Now 📆
-        </a>
-      </div>
+      <div class="gallery-content">
+        <!-- Left: Text content -->
+        <div class="gallery-left fade-in">
+          <h1 class="gallery-title">Tuition @ Pioneer</h1>
+          <p class="gallery-subtitle">
+            We provide <strong>quality</strong> and <strong>affordable</strong> tuition
+            to help students <strong>improve with confidence</strong>.
+          </p>
+          <a
+            class="btn btn-primary gallery-cta"
+            href="https://wa.me/6591850641?text=Hi%2C%20I%20would%20like%20to%20sign%20up%20for%20tuition.%20Can%20you%20share%20more%20info%3F"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Sign Up Now</span>
+            <span class="cta-icon">📆</span>
+          </a>
+        </div>
 
-      <!-- Right: Carousel -->
-      <div class="gallery-right">
-        <Swiper
-          :modules="[Navigation, Pagination, Autoplay]"
-          :slides-per-view="1"
-          :loop="true"
-          :autoplay="{ delay: 5000 }"
-          pagination
-          navigation
-          class="swiper-wrapper"
-        >
-          <SwiperSlide v-for="(img, index) in images" :key="index">
-            <img :src="img" class="gallery-img" />
-          </SwiperSlide>
-        </Swiper>
+                <!-- Right: Carousel -->
+        <div class="gallery-right slide-up">
+          <div class="carousel-container">
+            <!-- Custom Carousel -->
+            <div 
+              class="custom-carousel"
+              @mouseenter="stopAutoplay"
+              @mouseleave="startAutoplay"
+            >
+              <div class="carousel-wrapper" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+                <div v-for="(img, index) in alternativeImages" :key="index" class="carousel-slide">
+                  <img :src="img" class="gallery-img" :alt="`Classroom ${index + 1}`" />
+                  <div class="image-overlay">
+                    <span class="image-caption">Classroom {{ index + 1 }}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Carousel Navigation -->
+              <div class="carousel-nav">
+                <button @click="prevSlide" class="nav-btn prev-btn">‹</button>
+                <button @click="nextSlide" class="nav-btn next-btn">›</button>
+              </div>
+              
+              <!-- Carousel Indicators -->
+              <div class="carousel-indicators">
+                <button 
+                  v-for="(img, index) in alternativeImages" 
+                  :key="index"
+                  @click="goToSlide(index)"
+                  :class="['indicator', { active: currentSlide === index }]"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import { ref, onMounted, onUnmounted } from 'vue'
 
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 
+
+// Import images with explicit file extensions
 import classroom1 from '@/assets/classroomphoto1.jpg'
 import classroom2 from '@/assets/classroomphoto2.jpeg'
 import classroom3 from '@/assets/classroomphoto3.jpeg'
 import classroom4 from '@/assets/classroomphoto4.jpeg'
 
 const images = [classroom1, classroom2, classroom3, classroom4]
+
+// Try alternative import method
+const alternativeImages = [
+  new URL('@/assets/classroomphoto1.jpg', import.meta.url).href,
+  new URL('@/assets/classroomphoto2.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto3.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto4.jpeg', import.meta.url).href
+]
+
+// Alternative approach: Use public URLs if imports fail
+const fallbackImages = [
+  '/src/assets/classroomphoto1.jpg',
+  '/src/assets/classroomphoto2.jpeg',
+  '/src/assets/classroomphoto3.jpeg',
+  '/src/assets/classroomphoto4.jpeg'
+]
+
+// Carousel functionality
+const currentSlide = ref(0)
+let autoplayInterval = null
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % alternativeImages.length
+}
+
+const prevSlide = () => {
+  currentSlide.value = currentSlide.value === 0 
+    ? alternativeImages.length - 1 
+    : currentSlide.value - 1
+}
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+}
+
+const startAutoplay = () => {
+  autoplayInterval = setInterval(() => {
+    nextSlide()
+  }, 1500) // 1.5 seconds
+}
+
+const stopAutoplay = () => {
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval)
+    autoplayInterval = null
+  }
+}
+
+onMounted(() => {
+  startAutoplay()
+})
+
+onUnmounted(() => {
+  stopAutoplay()
+})
+
+
+
+
 </script>
 
 <style scoped>
 .gallery {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--background-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(245, 158, 11, 0.02) 100%);
+  z-index: -1;
+}
+
+.gallery-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
   width: 100%;
-  overflow-x: hidden;
-  padding: 2rem 1rem 4rem;
-  box-sizing: border-box;
+}
+
+.gallery-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.gallery-title {
+  font-size: clamp(2.5rem, 6vw, 3.2rem);
+  font-weight: 900;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gallery-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-xl);
+  font-weight: 400;
+}
+
+.gallery-subtitle strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.gallery-cta {
+  font-size: 1.1rem;
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+}
+
+.gallery-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+}
+
+.cta-icon {
+  font-size: 1.2rem;
+}
+
+.gallery-right {
+  animation: slideInRight 0.8s ease-out 0.2s both;
+}
+
+.carousel-container {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  background: white;
+}
+
+.gallery-swiper {
+  width: 100%;
+  height: 500px;
+  /* Fallback styles */
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+}
+
+.swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
-  height: 100vh;
-  max-height: 100vh;
 }
 
-/* Container layout for desktop */
-.container {
-  max-width: 1200px;
+.image-container {
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-sizing: border-box;
-}
-
-.gallery-left,
-.gallery-right {
-  flex: 1 1 48%;
-  min-width: 0;
-  animation: slideInRight 0.8s ease-out both;
-}
-
-
-.title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin-bottom: 1.5rem;
-  color: #000;
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  color: #333;
-  line-height: 1.7;
-}
-
-.cta-outline-button {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 0.9rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #000;
-  background-color: white;
-  border: 2px solid #000;
-  border-radius: 16px;
-  text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.cta-outline-button:hover {
-  background-color: #000;
-  color: #fff;
-  transform: translateY(-2px);
+  height: 100%;
+  overflow: hidden;
 }
 
 .gallery-img {
   width: 100%;
-  height: 400px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 16px;
+  transition: transform var(--transition-slow);
+  display: block;
+  max-width: 100%;
 }
-@keyframes slideInRight {
+
+.image-container:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: var(--spacing-xl);
+  color: white;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.image-caption {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.debug-info {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+.debug-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.custom-carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 1.5rem;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-slide .gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel Navigation */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn:hover {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Custom Swiper Styles */
+:deep(.swiper-pagination) {
+  bottom: var(--spacing-lg);
+}
+
+:deep(.custom-bullet) {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  background: var(--primary-color);
+  transform: scale(1.2);
+}
+
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+:deep(.swiper-button-next:hover),
+:deep(.swiper-button-prev:hover) {
+  background: white;
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+:deep(.swiper-button-next::after),
+:deep(.swiper-button-prev::after) {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(-50px);
   }
   to {
     opacity: 1;
@@ -140,43 +447,106 @@ const images = [classroom1, classroom2, classroom3, classroom4]
   }
 }
 
-/* ✅ MOBILE FIX */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 0 1rem;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
   }
-
-  .gallery-left,
-  .gallery-right {
-    flex: 1 1 100%;
-    width: 100%;
-  }
-
-  .gallery {
-    padding-top: 5rem; /* Previously might be too large */
-    padding-bottom: 2rem;
-  }
-
-  .title {
-    font-size: 2.2rem;
-    margin-top: 0.5rem; /* Reduce gap after navbar */
-    margin-bottom: 1rem; /* Reduce space before subtitle */
-  }
-
-  .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 1rem; /* Reduce space before button */
-  }
-
-  .cta-outline-button {
-    margin-top: 1rem; /* Reduce from 2rem */
-  }
-
-  .gallery-img {
-    height: auto;
-    max-height: 280px;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .gallery {
+    padding: var(--spacing-4xl) 0 var(--spacing-3xl) 0;
+    min-height: auto;
+  }
+
+  .gallery-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    text-align: center;
+    padding-top: var(--spacing-xl);
+  }
+
+  .gallery-left {
+    order: 2;
+  }
+
+  .gallery-right {
+    order: 1;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .gallery-title {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .gallery-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .gallery-cta {
+    width: 100%;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+
+  .gallery-swiper {
+    height: 300px;
+  }
+
+  .carousel-container {
+    border-radius: var(--radius-xl);
+    margin: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .custom-carousel {
+    height: 350px;
+    margin-top: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl) 0;
+  }
+
+  .gallery-content {
+    gap: var(--spacing-2xl);
+    padding-top: var(--spacing-lg);
+  }
+
+  .custom-carousel {
+    height: 300px;
+  }
+
+  .carousel-container {
+    margin: 0 var(--spacing-xs);
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  .gallery-title {
+    font-size: 1.8rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 1rem;
+  }
+}
 </style>

@@ -125,10 +125,12 @@ import improvement8 from '@/assets/improvement8.jpeg'
 import improvement9 from '@/assets/improvement9.jpeg'
 import improvement10 from '@/assets/improvement10.jpeg'
 import improvement11 from '@/assets/improvement11.jpeg'
+import improvement12 from '@/assets/improvement12.png'
+import improvement13 from '@/assets/improvement13.jpeg'
 
 const psleTestimonials = [psletestimonial1, psletestimonial2, psletestimonial3]
 const secondaryTestimonials = [olvltestimonial1, olvltestimonial2, olvltestimonial3, olvltestimonial4]
-const improvementTestimonials = [improvement1, improvement2, improvement3, improvement4,improvement5, improvement6, improvement7, improvement8, improvement9, improvement10, improvement11]
+const improvementTestimonials = [improvement1, improvement2, improvement3, improvement4,improvement5, improvement6, improvement7, improvement8, improvement9, improvement10, improvement11, improvement12, improvement13]
 </script>
 
 <style scoped>

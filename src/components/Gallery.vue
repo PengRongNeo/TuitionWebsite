@@ -11,7 +11,7 @@
           </p>
           <a
             class="btn btn-primary gallery-cta"
-            href="https://wa.me/6591850641?text=Hi%2C%20I%20would%20like%20to%20sign%20up%20for%20tuition.%20Can%20you%20share%20more%20info%3F"
+            href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
             target="_blank"
             rel="noopener noreferrer"
           >

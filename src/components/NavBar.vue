@@ -11,7 +11,7 @@
         <a href="#teachers" @click.prevent="scrollToSection('teachers')" class="nav-link">Teachers</a>
         <a href="#classes" @click.prevent="scrollToSection('classes')" class="nav-link">Classes</a>
         <a href="#testimonials" @click.prevent="scrollToSection('testimonials')" class="nav-link">Testimonials</a>
-        <a href="#footer" @click.prevent="scrollToSection('footer')" class="nav-link">Contact</a>
+        <a href="#footer" @click.prevent="scrollToSection('footer')" class="nav-link">Contact Us</a>
         <a href="#" @click.prevent="showTerms = true" class="nav-link policy-link">Cancellation Policy</a>
       </nav>
 

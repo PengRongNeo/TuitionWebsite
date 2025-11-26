@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted } from 'vue'
 import Navbar from './components/NavBar.vue'
 import Gallery from './components/Gallery.vue'
 import Teachers from './components/Teachers.vue'
@@ -20,23 +21,65 @@ import Testimonials from './components/Testimonials.vue'
 import ProudStudents from './components/ProudStudents.vue'
 import FooterSection from './components/FooterSection.vue'
 import WhatsAppButton from './components/WhatsappButton.vue'
+
+// Scroll animation observer
+let observer = null
+
+onMounted(() => {
+  // Create Intersection Observer for scroll animations
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+        }
+      })
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the section is visible
+      rootMargin: '0px 0px -50px 0px' // Start animation slightly before section enters viewport
+    }
+  )
+
+  // Observe all sections
+  const sections = document.querySelectorAll('.section')
+  sections.forEach((section) => {
+    observer.observe(section)
+  })
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
+})
 </script>
 
 <style>
 /* Modern Design System */
 :root {
-  /* Color Palette */
-  --primary-color: #2563eb;
-  --primary-dark: #1d4ed8;
-  --secondary-color: #f59e0b;
-  --accent-color: #10b981;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
-  --background-primary: #ffffff;
-  --background-secondary: #f9fafb;
-  --background-accent: #f3f4f6;
-  --border-color: #e5e7eb;
+  /* Color Palette - From Gallery Highlights */
+  --color-orange: #FF9933; /* quality */
+  --color-coral: #FF9999; /* affordable - BASE COLOR */
+  --color-blue: #99CCFF; /* improve */
+  --color-yellow: #FFD700; /* confidence */
+  
+  /* Legacy support - Coral as base */
+  --primary-color: #FF9999;
+  --primary-dark: #FF8888;
+  --secondary-color: #FFD700;
+  --accent-color: #99CCFF;
+  
+  /* Text Colors */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-light: #999999;
+  
+  /* Background Colors */
+  --background-primary: #F8F7F5;
+  --background-secondary: #FFFFFF;
+  --background-accent: #F5F5F3;
+  --border-color: #E5E5E3;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -131,8 +174,10 @@ p {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-  color: white;
+  background: linear-gradient(135deg, var(--color-yellow), var(--color-orange));
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 153, 51, 0.25);
 }
 
 .btn-primary:hover {
@@ -162,6 +207,20 @@ p {
 /* Section Styles */
 .section {
   padding: var(--spacing-3xl) 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* First section (Gallery) should be visible immediately */
+#gallery.section {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-title {
@@ -178,7 +237,7 @@ p {
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(90deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   border-radius: 2px;
 }
 
@@ -217,7 +276,7 @@ p {
 #app {
   position: relative;
   z-index: 0;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--background-primary);
   min-height: 100vh;
   overflow-x: hidden;
 }

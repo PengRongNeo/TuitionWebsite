@@ -40,11 +40,11 @@
           
           <!-- Simple Navigation Links -->
           <nav class="mobile-nav-links">
-            <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Sign Up</a>
+            <!-- <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Sign Up</a> -->
             <a href="#teachers" @click.prevent="scrollToSectionMobile('teachers')" class="mobile-nav-link">Teachers</a>
             <a href="#classes" @click.prevent="scrollToSectionMobile('classes')" class="mobile-nav-link">Classes</a>
             <a href="#testimonials" @click.prevent="scrollToSectionMobile('testimonials')" class="mobile-nav-link">Testimonials</a>
-            <a href="#footer" @click.prevent="scrollToSectionMobile('footer')" class="mobile-nav-link">Contact</a>
+            <a href="#footer" @click.prevent="scrollToSectionMobile('footer')" class="mobile-nav-link">Contact Us</a>
             <a href="#" @click.prevent="openTermsMobile" class="mobile-nav-link policy-link">Cancellation Policy</a>
           </nav>
         </div>
@@ -223,7 +223,7 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 .logo:hover {
-  background: rgba(37, 99, 235, 0.05);
+  background: rgba(255, 153, 153, 0.1);
   transform: translateY(-1px);
 }
 
@@ -237,7 +237,7 @@ const scrollToSectionMobile = (sectionId) => {
 
 .logo-text {
   font-family: var(--font-family-display);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -261,8 +261,8 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
-  background: rgba(37, 99, 235, 0.05);
+  color: var(--color-coral);
+  background: rgba(255, 153, 153, 0.1);
 }
 
 .nav-link::after {
@@ -272,7 +272,7 @@ const scrollToSectionMobile = (sectionId) => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(90deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   transition: all var(--transition-normal);
   transform: translateX(-50%);
 }
@@ -287,8 +287,8 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 .policy-link:hover {
-  color: var(--secondary-color);
-  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-yellow);
+  background: rgba(255, 215, 0, 0.15);
 }
 
 .hamburger {
@@ -400,7 +400,7 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 .mobile-nav-link.policy-link:hover {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(255, 215, 0, 0.15);
   color: var(--secondary-color);
 }
 
@@ -462,7 +462,7 @@ const scrollToSectionMobile = (sectionId) => {
   align-items: flex-start;
   justify-content: space-between;
   padding: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   color: white;
   border-radius: 24px 24px 0 0;
   position: relative;
@@ -543,8 +543,8 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 .policy-item.warning {
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border-color: #f59e0b;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 153, 51, 0.1));
+  border-color: var(--color-yellow);
 }
 
 .policy-icon {

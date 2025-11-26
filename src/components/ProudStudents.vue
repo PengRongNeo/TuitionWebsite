@@ -76,7 +76,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 153, 51, 0.05) 25%, rgba(255, 153, 153, 0.05) 50%, rgba(153, 204, 255, 0.05) 75%, rgba(255, 215, 0, 0.05) 100%);
   z-index: -1;
 }
 

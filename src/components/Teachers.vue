@@ -15,7 +15,7 @@
             'Secondary Level: Math and Science',
             'Helped over 120 students improve their grades'
           ]"
-          philosophy="&quot;I believe in being firm and focused during lessons so every student stays on track — but outside of class, I connect with my students like a friend. Beyond just academics, I'm always here to listen, encourage, and help them grow with confidence.&quot;"
+          :philosophy="karenPhilosophy"
           animationClass="slide-in-left"
         />
 
@@ -32,7 +32,7 @@
             'Upper Secondary Level: Math, Amath, Chemistry, Physics',
             'Helped over 40 students improve their grades'
           ]"
-          philosophy="&quot;I focus on delivering concepts in a way that's easy to understand — using real-life examples and analogies so it clicks. Once students truly get it, it sticks.&quot;"
+          :philosophy="pengRongPhilosophy"
           :reverse-layout="true"
           animationClass="slide-in-right"
         />
@@ -55,7 +55,7 @@
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>5 Years of Teaching Experience</span>
+                <span>6 Years of Teaching Experience</span>
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
@@ -90,11 +90,11 @@
             <div class="mobile-qualifications">
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>Part Time Tutor (NUS Business Analytics Undergraduate)</span>
+                <span>Part Time Tutor (NUS Bachelor of Science Honours (Highest Distinction))</span>
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>3 Years of Teaching Experience</span>
+                <span>4 Years of Teaching Experience</span>
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
@@ -122,6 +122,10 @@
 import TeacherProfile from './TeacherProfile.vue'
 import photoKaren from '@/assets/teacherkaren.jpeg'
 import photoPengRong from '@/assets/teacherpengrong.jpeg'
+
+const karenPhilosophy = "I believe in being firm and focused during lessons so every student stays on track — but outside of class, I connect with my students like a friend. Beyond just academics, I'm always here to listen, encourage, and help them grow with confidence."
+
+const pengRongPhilosophy = "I focus on delivering concepts in a way that's easy to understand — using real-life examples and analogies so it clicks. Once students truly get it, it sticks."
 </script>
 
 <style scoped>
@@ -137,7 +141,7 @@ import photoPengRong from '@/assets/teacherpengrong.jpeg'
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(245, 158, 11, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(153, 204, 255, 0.05) 0%, rgba(255, 153, 51, 0.05) 50%, rgba(255, 215, 0, 0.05) 100%);
   z-index: -1;
 }
 

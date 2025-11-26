@@ -6,8 +6,8 @@
         <div class="gallery-left fade-in">
           <h1 class="gallery-title">Tuition @ Pioneer</h1>
           <p class="gallery-subtitle">
-            We provide <strong>quality</strong> and <strong>affordable</strong> tuition
-            to help students <strong>improve with confidence</strong>.
+            We provide <span class="highlight-orange">quality</span> and <span class="highlight-coral">affordable</span> tuition
+            to help students <span class="highlight-blue">improve</span> with <span class="highlight-yellow">confidence</span>.
           </p>
           <a
             class="btn btn-primary gallery-cta"
@@ -15,7 +15,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span>Sign Up Now</span>
+            <span>Join Us Now</span>
             <span class="cta-icon">📆</span>
           </a>
         </div>
@@ -151,7 +151,7 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(245, 158, 11, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.05) 0%, rgba(255, 153, 153, 0.05) 30%, rgba(153, 204, 255, 0.05) 60%, rgba(255, 215, 0, 0.05) 100%);
   z-index: -1;
 }
 
@@ -173,7 +173,7 @@ onUnmounted(() => {
   margin-bottom: var(--spacing-lg);
   color: var(--text-primary);
   line-height: 1.1;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -190,6 +190,37 @@ onUnmounted(() => {
 .gallery-subtitle strong {
   color: var(--primary-color);
   font-weight: 700;
+}
+
+/* Maythematics.com style highlights */
+.gallery-subtitle .highlight-orange {
+  color: #FF9933;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.gallery-subtitle .highlight-coral {
+  color: #FF9999;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.gallery-subtitle .highlight-blue {
+  color: #99CCFF;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.gallery-subtitle .highlight-purple {
+  color: #CC99FF;
+  font-weight: 700;
+  font-size: 1.15em;
+}
+
+.gallery-subtitle .highlight-yellow {
+  color: #FFD700;
+  font-weight: 700;
+  font-size: 1.15em;
 }
 
 .gallery-cta {

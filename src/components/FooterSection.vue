@@ -107,7 +107,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.02) 0%, rgba(16, 185, 129, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.03) 0%, rgba(255, 153, 153, 0.03) 20%, rgba(153, 204, 255, 0.03) 40%, rgba(255, 215, 0, 0.03) 60%, rgba(255, 153, 51, 0.03) 80%, rgba(153, 204, 255, 0.03) 100%);
   z-index: -1;
 }
 
@@ -253,7 +253,7 @@
 }
 
 .contact-item:hover {
-  background: rgba(37, 99, 235, 0.05);
+  background: rgba(255, 153, 153, 0.1);
 }
 
 .contact-item:hover::after {
@@ -323,7 +323,7 @@
 }
 
 .social-link:hover {
-  background: rgba(37, 99, 235, 0.05);
+  background: rgba(255, 153, 153, 0.1);
 }
 
 .social-link:hover::after {
@@ -387,7 +387,7 @@
 }
 
 .footer-social-link:hover {
-  background: rgba(37, 99, 235, 0.05);
+  background: rgba(255, 153, 153, 0.1);
 }
 
 .footer-social-link:hover::after {

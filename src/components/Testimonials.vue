@@ -146,7 +146,7 @@ const improvementTestimonials = [improvement1, improvement2, improvement3, impro
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.02) 0%, rgba(37, 99, 235, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 153, 51, 0.05) 25%, rgba(255, 153, 153, 0.05) 50%, rgba(153, 204, 255, 0.05) 75%, rgba(255, 215, 0, 0.05) 100%);
   z-index: -1;
 }
 
@@ -271,7 +271,7 @@ const improvementTestimonials = [improvement1, improvement2, improvement3, impro
 :deep(.swiper-pagination-bullet-active) {
   background: var(--primary-color);
   transform: scale(1.2);
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
 }
 
 :deep(.swiper-button-next),

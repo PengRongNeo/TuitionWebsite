@@ -75,7 +75,7 @@ const classRates = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.02) 0%, rgba(37, 99, 235, 0.02) 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 153, 51, 0.05) 30%, rgba(255, 153, 153, 0.05) 60%, rgba(153, 204, 255, 0.05) 100%);
   z-index: -1;
 }
 
@@ -104,7 +104,7 @@ const classRates = [
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(90deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
@@ -119,19 +119,19 @@ const classRates = [
 }
 
 .primary-level {
-  border-color: rgba(37, 99, 235, 0.1);
+  border-color: rgba(153, 204, 255, 0.3);
 }
 
 .primary-level:hover {
-  border-color: rgba(37, 99, 235, 0.2);
+  border-color: rgba(153, 204, 255, 0.5);
 }
 
 .secondary-level {
-  border-color: rgba(245, 158, 11, 0.1);
+  border-color: rgba(255, 215, 0, 0.3);
 }
 
 .secondary-level:hover {
-  border-color: rgba(245, 158, 11, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
 }
 
 .card-header {

@@ -1,7 +1,7 @@
 <template>
   <div class="whatsapp-container">
     <!-- Welcome Popup -->
-    <div v-if="showPopup" :class="['welcome-popup', { 'popup-hidden': isScrolling }]" @click="closePopup">
+    <div v-if="showPopup" class="welcome-popup" @click="closePopup">
       <div class="chat-bubble" @click.stop>
         <div class="chat-header">
           <div class="chat-logo">
@@ -48,8 +48,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const showPopup = ref(false)
-const isScrolling = ref(false)
-let scrollTimeout = null
+const hasScrolled = ref(false)
 
 const showWelcomePopup = () => {
   // Directly open WhatsApp when button is clicked
@@ -68,27 +67,19 @@ const openWhatsApp = () => {
 }
 
 const handleScroll = () => {
-  // Set scrolling state
-  isScrolling.value = true
-  
-  // Clear existing timeout
-  if (scrollTimeout) {
-    clearTimeout(scrollTimeout)
+  // Mark that user has scrolled and show popup once
+  if (!hasScrolled.value) {
+    hasScrolled.value = true
+    // Show popup after first scroll
+    setTimeout(() => {
+      if (!showPopup.value) {
+        showPopup.value = true
+      }
+    }, 1000) // 1 second delay after first scroll
   }
-  
-  // Set timeout to detect when scrolling stops
-  scrollTimeout = setTimeout(() => {
-    isScrolling.value = false
-  }, 150) // Wait 150ms after scrolling stops
 }
 
-// Show popup automatically when component mounts (every refresh)
 onMounted(() => {
-  // Show popup after a short delay on every page load
-  setTimeout(() => {
-    showPopup.value = true
-  }, 2000) // 2 second delay
-  
   // Add scroll event listener
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
@@ -96,9 +87,6 @@ onMounted(() => {
 onUnmounted(() => {
   // Clean up scroll event listener
   window.removeEventListener('scroll', handleScroll)
-  if (scrollTimeout) {
-    clearTimeout(scrollTimeout)
-  }
 })
 </script>
 
@@ -256,13 +244,6 @@ onUnmounted(() => {
   right: 30px;
   z-index: 99999;
   animation: slideInChat 0.3s ease-out;
-  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-}
-
-.welcome-popup.popup-hidden {
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
 }
 
 .chat-bubble {

@@ -171,9 +171,8 @@ onUnmounted(() => {
   font-size: clamp(2.5rem, 6vw, 3.2rem);
   font-weight: 900;
   margin-bottom: var(--spacing-lg);
-  color: var(--text-primary);
   line-height: 1.1;
-  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-blue), var(--color-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -234,6 +233,8 @@ onUnmounted(() => {
   font-weight: 600;
   box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
+  background: linear-gradient(135deg, #E6D5F5, #D4C5E8) !important;
+  color: var(--text-primary) !important;
 }
 
 .gallery-cta:hover {

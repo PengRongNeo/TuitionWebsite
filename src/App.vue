@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue'
 import Navbar from './components/NavBar.vue'
 import Gallery from './components/Gallery.vue'
 import Teachers from './components/Teachers.vue'
@@ -21,38 +20,6 @@ import Testimonials from './components/Testimonials.vue'
 import ProudStudents from './components/ProudStudents.vue'
 import FooterSection from './components/FooterSection.vue'
 import WhatsAppButton from './components/WhatsappButton.vue'
-
-// Scroll animation observer
-let observer = null
-
-onMounted(() => {
-  // Create Intersection Observer for scroll animations
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-        }
-      })
-    },
-    {
-      threshold: 0.1, // Trigger when 10% of the section is visible
-      rootMargin: '0px 0px -50px 0px' // Start animation slightly before section enters viewport
-    }
-  )
-
-  // Observe all sections
-  const sections = document.querySelectorAll('.section')
-  sections.forEach((section) => {
-    observer.observe(section)
-  })
-})
-
-onUnmounted(() => {
-  if (observer) {
-    observer.disconnect()
-  }
-})
 </script>
 
 <style>
@@ -207,20 +174,6 @@ p {
 /* Section Styles */
 .section {
   padding: var(--spacing-3xl) 0;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* First section (Gallery) should be visible immediately */
-#gallery.section {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .section-title {

@@ -237,7 +237,7 @@ const scrollToSectionMobile = (sectionId) => {
 
 .logo-text {
   font-family: var(--font-family-display);
-  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-blue), var(--color-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -272,7 +272,7 @@ const scrollToSectionMobile = (sectionId) => {
   left: 50%;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
+  background: linear-gradient(90deg, var(--color-coral), var(--color-blue), var(--color-yellow));
   transition: all var(--transition-normal);
   transform: translateX(-50%);
 }
@@ -462,7 +462,7 @@ const scrollToSectionMobile = (sectionId) => {
   align-items: flex-start;
   justify-content: space-between;
   padding: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--color-coral), var(--color-orange), var(--color-blue), var(--color-yellow));
+  background: linear-gradient(135deg, var(--color-coral), var(--color-blue), var(--color-yellow));
   color: white;
   border-radius: 24px 24px 0 0;
   position: relative;

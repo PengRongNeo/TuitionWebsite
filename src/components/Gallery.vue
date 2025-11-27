@@ -67,27 +67,46 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 
 // Import images with explicit file extensions
-import classroom1 from '@/assets/classroomphoto1.jpg'
+import classroom1 from '@/assets/classroomphoto1.jpeg'
 import classroom2 from '@/assets/classroomphoto2.jpeg'
 import classroom3 from '@/assets/classroomphoto3.jpeg'
 import classroom4 from '@/assets/classroomphoto4.jpeg'
+import classroom5 from '@/assets/classroomphoto5.jpeg'
+import classroom6 from '@/assets/classroomphoto6.jpeg'
+import classroom7 from '@/assets/classroomphoto7.jpeg'
+import classroom8 from '@/assets/classroomphoto8.jpeg'
+import classroom9 from '@/assets/classroomphoto9.jpeg'
+import classroom10 from '@/assets/classroomphoto10.jpeg'
 
-const images = [classroom1, classroom2, classroom3, classroom4]
+
+const images = [classroom1, classroom2, classroom3, classroom4, classroom5, classroom6, classroom7, classroom8, classroom9, classroom10]
 
 // Try alternative import method
 const alternativeImages = [
-  new URL('@/assets/classroomphoto1.jpg', import.meta.url).href,
+  new URL('@/assets/classroomphoto1.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto2.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto3.jpeg', import.meta.url).href,
-  new URL('@/assets/classroomphoto4.jpeg', import.meta.url).href
+  new URL('@/assets/classroomphoto4.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto5.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto6.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto7.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto8.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto9.jpeg', import.meta.url).href,
+  new URL('@/assets/classroomphoto10.jpeg', import.meta.url).href
 ]
 
 // Alternative approach: Use public URLs if imports fail
 const fallbackImages = [
-  '/src/assets/classroomphoto1.jpg',
+  '/src/assets/classroomphoto1.jpeg',
   '/src/assets/classroomphoto2.jpeg',
   '/src/assets/classroomphoto3.jpeg',
-  '/src/assets/classroomphoto4.jpeg'
+  '/src/assets/classroomphoto4.jpeg',
+  '/src/assets/classroomphoto5.jpeg',
+  '/src/assets/classroomphoto6.jpeg',
+  '/src/assets/classroomphoto7.jpeg',
+  '/src/assets/classroomphoto8.jpeg',
+  '/src/assets/classroomphoto9.jpeg',
+  '/src/assets/classroomphoto10.jpeg'
 ]
 
 // Carousel functionality

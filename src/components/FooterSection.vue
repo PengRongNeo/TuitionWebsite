@@ -13,7 +13,7 @@
             </div>
             <div class="map-wrapper">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.732233662056!2d103.69308367526762!3d1.3369130616166736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f6ab39099ed%3A0x9fdb80edecd31bd2!2sBlk%20986C%20Jurong%20West%20St%2093!5e0!3m2!1sen!2ssg!4v1750078540730!5m2!1sen!2ssg"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.729690829083!2d103.69550061131264!3d1.3384772616050662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da0f91bb4eea69%3A0x371d940109f07d93!2s648B%20Jurong%20West%20Street%2061%2C%20Block%20648B%2C%20Singapore%20642648!5e0!3m2!1sen!2ssg!4v1768375836769!5m2!1sen!2ssg"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -21,7 +21,7 @@
           ></iframe>
             </div>
             <div class="address-info">
-              <p class="address">Blk 986C Jurong West St 93</p>
+              <p class="address">Blk 648B Jurong West St 61</p>
               <p class="area">Jurong West, Singapore</p>
             </div>
           </div>

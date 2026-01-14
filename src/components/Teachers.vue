@@ -10,10 +10,10 @@
           :photo="photoKaren"
           :experienceList="[
             'Full Time Educator',
-            '5 Years of Teaching Experience',
+            '6 Years of Teaching Experience',
             'Primary Level: English, Math and Science',
             'Secondary Level: Math and Science',
-            'Helped over 120 students improve their grades'
+            'Currently teaching over 80+ students weekly across Pri and Sec levels'
           ]"
           :philosophy="karenPhilosophy"
           animationClass="slide-in-left"
@@ -27,10 +27,10 @@
           name="Teacher Peng Rong"
           :photo="photoPengRong"
           :experienceList="[
-            'Part Time Tutor (NUS Business Analytics Undergraduate)',
-            '3 Years of Teaching Experience',
-            'Upper Secondary Level: Math, Amath, Chemistry, Physics',
-            'Helped over 40 students improve their grades'
+            'Part Time Tutor (NUS Bachelor of Science - Honours (Highest Distinction))',
+            '4 Years of Teaching Experience',
+            'Specialised in Upper Secondary Level: Math, Amath, Chemistry, Physics',
+            'Helped over 50+ students improve their grades'
           ]"
           :philosophy="pengRongPhilosophy"
           :reverse-layout="true"
@@ -67,7 +67,7 @@
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>Helped over 120 students improve their grades</span>
+                <span>Currently teaching over 80+ students weekly across Pri and Sec levels</span>
               </div>
             </div>
             <div class="mobile-philosophy">
@@ -90,7 +90,7 @@
             <div class="mobile-qualifications">
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>Part Time Tutor (NUS Bachelor of Science Honours (Highest Distinction))</span>
+                <span>Part Time Tutor (NUS Bachelor of Science - Honours (Highest Distinction))</span>
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
@@ -102,7 +102,7 @@
               </div>
               <div class="mobile-qualification-item">
                 <span class="mobile-check">✓</span>
-                <span>Helped over 40 students improve their grades</span>
+                <span>Helped over 50+ students improve their grades</span>
               </div>
             </div>
             <div class="mobile-philosophy">

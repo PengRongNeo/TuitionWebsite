@@ -77,12 +77,14 @@ import classroom7 from '@/assets/classroomphoto7.jpeg'
 import classroom8 from '@/assets/classroomphoto8.jpeg'
 import classroom9 from '@/assets/classroomphoto9.jpeg'
 import classroom10 from '@/assets/classroomphoto10.jpeg'
+import classroom11 from '@/assets/classroomphoto11.jpeg'
 
 
-const images = [classroom1, classroom2, classroom3, classroom4, classroom5, classroom6, classroom7, classroom8, classroom9, classroom10]
+const images = [classroom11,classroom1, classroom2, classroom3, classroom4, classroom5, classroom6, classroom7, classroom8, classroom9, classroom10]
 
 // Try alternative import method
 const alternativeImages = [
+new URL('@/assets/classroomphoto11.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto1.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto2.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto3.jpeg', import.meta.url).href,
@@ -92,11 +94,12 @@ const alternativeImages = [
   new URL('@/assets/classroomphoto7.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto8.jpeg', import.meta.url).href,
   new URL('@/assets/classroomphoto9.jpeg', import.meta.url).href,
-  new URL('@/assets/classroomphoto10.jpeg', import.meta.url).href
+  new URL('@/assets/classroomphoto10.jpeg', import.meta.url).href,
 ]
 
 // Alternative approach: Use public URLs if imports fail
 const fallbackImages = [
+  '/src/assets/classroomphoto11.jpeg',
   '/src/assets/classroomphoto1.jpeg',
   '/src/assets/classroomphoto2.jpeg',
   '/src/assets/classroomphoto3.jpeg',

@@ -14,6 +14,7 @@
             href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
             target="_blank"
             rel="noopener noreferrer"
+            @click="trackWhatsappClick"
           >
             <span>Join Us Now</span>
             <span class="cta-icon">📆</span>
@@ -115,6 +116,15 @@ const fallbackImages = [
 // Carousel functionality
 const currentSlide = ref(0)
 let autoplayInterval = null
+
+const trackWhatsappClick = () => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'engagement',
+      event_label: 'Gallery Join Us Now',
+    })
+  }
+}
 
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % alternativeImages.length

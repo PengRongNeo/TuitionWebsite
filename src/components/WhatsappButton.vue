@@ -27,7 +27,7 @@
     <!-- WhatsApp Button -->
     <button
       class="whatsapp-button"
-      @click="showWelcomePopup"
+      @click="handleWhatsappButtonClick"
       aria-label="Contact us on WhatsApp"
     >
       <div class="whatsapp-icon">
@@ -50,10 +50,23 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const showPopup = ref(false)
 const hasScrolled = ref(false)
 
-const showWelcomePopup = () => {
-  // Directly open WhatsApp when button is clicked
+const openWhatsappWindow = () => {
   const whatsappUrl = "https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
   window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+}
+
+const trackWhatsappClick = (label) => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'engagement',
+      event_label: label,
+    })
+  }
+}
+
+const handleWhatsappButtonClick = () => {
+  trackWhatsappClick('Floating WhatsApp button')
+  openWhatsappWindow()
 }
 
 const closePopup = () => {
@@ -61,8 +74,8 @@ const closePopup = () => {
 }
 
 const openWhatsApp = () => {
-  const whatsappUrl = "https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
-  window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+  trackWhatsappClick('Welcome popup WhatsApp button')
+  openWhatsappWindow()
   closePopup()
 }
 

@@ -104,7 +104,7 @@
           </a>
         </div>
         <div class="footer-info">
-          <p class="footer-text">© 2025 Tuition @ Pioneer. All rights reserved.</p>
+          <p class="footer-text">© 2026 Tuition @ Pioneer. All rights reserved.</p>
           <p class="footer-text">Quality education for confident learners.</p>
         </div>
       </div>

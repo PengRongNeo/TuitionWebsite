@@ -10,7 +10,7 @@
           :photo="photoKaren"
           :experienceList="[
             'Full Time Educator',
-            '6 Years of Teaching Experience',
+            '8 Years of Teaching Experience',
             'Primary Level: English, Math and Science',
             'Secondary Level: Math and Science',
             'Currently teaching over 80+ students weekly across Pri and Sec levels'
@@ -27,10 +27,10 @@
           name="Teacher Peng Rong"
           :photo="photoPengRong"
           :experienceList="[
-            'Part Time Tutor (NUS Bachelor of Science - Honours (Highest Distinction))',
-            '4 Years of Teaching Experience',
+            'NUS Bachelor of Science - Honours (Highest Distinction)',
+            '6 Years of Teaching Experience',
             'Specialised in Upper Secondary Level: Math, Amath, Chemistry, Physics',
-            'Helped over 50+ students improve their grades'
+            'Proven track record of helping students improve their grades within 1 term'
           ]"
           :philosophy="pengRongPhilosophy"
           :reverse-layout="true"

@@ -36,7 +36,7 @@
               <span>Follow our TikTok!</span>
             </a>
             <a
-              href="https://share.google/JSzsTJt2udprkYebb"
+              href="https://maps.app.goo.gl/fHnfhoqpspxNcnjr7"
               target="_blank"
               rel="noopener noreferrer"
               class="btn gallery-cta gallery-google-btn"

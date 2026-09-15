@@ -9,16 +9,42 @@
             We provide <span class="highlight-orange">quality</span> and <span class="highlight-coral">affordable</span> tuition
             to help students <span class="highlight-blue">improve</span> with <span class="highlight-yellow">confidence</span>.
           </p>
-          <a
-            class="btn btn-primary gallery-cta"
-            href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
-            target="_blank"
-            rel="noopener noreferrer"
-            @click="trackWhatsappClick"
-          >
-            <span>Join Us Now</span>
-            <span class="cta-icon">📆</span>
-          </a>
+          <p class="gallery-mrt-badge" role="note">
+            <span class="gallery-mrt-icon" aria-hidden="true">📍</span>
+            <span>Just 2 mins walk from Pioneer MRT</span>
+          </p>
+          <div class="gallery-cta-group">
+            <a
+              class="btn btn-primary gallery-cta"
+              href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
+              target="_blank"
+              rel="noopener noreferrer"
+              @click="trackWhatsappClick"
+            >
+              <span class="cta-icon">💬</span>
+              <span>Chat with us!</span>
+            </a>
+            <a
+              href="https://www.tiktok.com/@tuitionatpioneer"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn gallery-cta gallery-tiktok-btn"
+            >
+              <svg class="gallery-tiktok-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+              </svg>
+              <span>Follow our TikTok!</span>
+            </a>
+            <a
+              href="https://share.google/JSzsTJt2udprkYebb"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn gallery-cta gallery-google-btn"
+            >
+              <span class="cta-icon" aria-hidden="true">⭐</span>
+              <span>Leave a Review!</span>
+            </a>
+          </div>
         </div>
 
                 <!-- Right: Carousel -->
@@ -197,6 +223,31 @@ onUnmounted(() => {
 
 .gallery-left {
   animation: slideInLeft 0.8s ease-out;
+  container-type: inline-size;
+}
+
+.gallery-mrt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--spacing-lg);
+  padding: 10px 16px;
+  font-size: clamp(0.875rem, 2vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #3d3d3d;
+  background: linear-gradient(135deg, #FFF8E1, #E3F2FD);
+  border-radius: 999px;
+  border: 1px solid rgba(153, 204, 255, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.gallery-mrt-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .gallery-title {
@@ -254,28 +305,98 @@ onUnmounted(() => {
   font-size: 1.15em;
 }
 
+.gallery-cta-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.gallery-cta-group .gallery-cta {
+  width: 100%;
+  height: 63px;
+  min-height: 63px;
+  max-height: 63px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.gallery-cta-group .gallery-google-btn {
+  grid-column: 1 / -1;
+}
+
+@container (min-width: 540px) {
+  .gallery-cta-group {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-cta-group .gallery-google-btn {
+    grid-column: auto;
+  }
+}
+
 .gallery-cta {
-  font-size: 1.1rem;
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  border-radius: var(--radius-xl);
+  font-size: 16px;
+  border-radius: 16px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 6px;
   font-weight: 600;
-  box-shadow: var(--shadow-lg);
-  transition: all var(--transition-normal);
+  line-height: 1.2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
   background: linear-gradient(135deg, #E6D5F5, #D4C5E8) !important;
   color: var(--text-primary) !important;
 }
 
+.gallery-cta.btn-primary {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+
 .gallery-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-cta.btn-primary:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+}
+
+.gallery-tiktok-btn.gallery-cta {
+  background: linear-gradient(135deg, #C8E6FF, #F5E4FF) !important;
+  border: none;
+  color: #3d3d3d !important;
+}
+
+.gallery-tiktok-btn.gallery-cta:hover {
+  background: linear-gradient(135deg, #B8DCFA, #EDD6FC) !important;
+}
+
+.gallery-google-btn.gallery-cta {
+  background: linear-gradient(135deg, #FFF4D6, #DFF5E8) !important;
+  border: none;
+  color: #3d3d3d !important;
+}
+
+.gallery-google-btn.gallery-cta:hover {
+  background: linear-gradient(135deg, #FFECC2, #CFF0DC) !important;
 }
 
 .cta-icon {
-  font-size: 1.2rem;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.gallery-tiktok-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #3d3d3d;
 }
 
 .gallery-right {
@@ -552,13 +673,32 @@ onUnmounted(() => {
 
   .gallery-subtitle {
     font-size: 1.1rem;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
   }
 
-  .gallery-cta {
+  .gallery-mrt-badge {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .gallery-cta-group {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .gallery-cta-group .gallery-google-btn {
+    grid-column: auto;
+  }
+
+  .gallery-cta-group .gallery-cta {
     width: 100%;
-    justify-content: center;
-    padding: var(--spacing-md) var(--spacing-xl);
+    height: 63px;
+    min-height: 63px;
+    max-height: 63px;
+    padding: 0 12px;
   }
 
   .gallery-swiper {

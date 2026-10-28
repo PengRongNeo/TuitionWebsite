@@ -2,19 +2,22 @@
  * Post-build prerender for the SPA homepage (/).
  * Renders the built app in headless Chromium and writes dist/index.html
  * so crawlers receive meaningful HTML without executing JavaScript.
+ *
+ * Vercel/Linux CI: @sparticuz/chromium + puppeteer-core (no system libnss/libnspr).
+ * Local: full puppeteer with its bundled Chrome.
  */
 import { createServer } from 'node:http'
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { writeFileSync, existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sirv from 'sirv'
-import puppeteer from 'puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, '../dist')
 const indexPath = path.join(distDir, 'index.html')
 
 const SKIP = process.env.SKIP_PRERENDER === '1'
+const IS_VERCEL = Boolean(process.env.VERCEL)
 
 function validateHtml(html) {
   const errors = []
@@ -42,6 +45,28 @@ function validateHtml(html) {
   if (errors.length) {
     throw new Error(`Prerender validation failed:\n- ${errors.join('\n- ')}`)
   }
+}
+
+async function launchBrowser() {
+  if (IS_VERCEL) {
+    const chromium = (await import('@sparticuz/chromium')).default
+    const puppeteer = (await import('puppeteer-core')).default
+
+    chromium.setGraphicsMode = false
+
+    return puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    })
+  }
+
+  const puppeteer = (await import('puppeteer')).default
+  return puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  })
 }
 
 async function startStaticServer() {
@@ -75,10 +100,7 @@ async function prerenderHomepage() {
 
   let browser
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    })
+    browser = await launchBrowser()
 
     const page = await browser.newPage()
     await page.setViewport({ width: 1280, height: 900 })
@@ -101,7 +123,9 @@ async function prerenderHomepage() {
     html = html.replace(/https?:\/\/127\.0\.0\.1:\d+\//g, '/')
     validateHtml(html)
     writeFileSync(indexPath, html, 'utf8')
-    console.log('[prerender] Wrote prerendered homepage to dist/index.html')
+    console.log(
+      `[prerender] Wrote prerendered homepage to dist/index.html (${IS_VERCEL ? 'Vercel/sparticuz' : 'local puppeteer'})`,
+    )
   } finally {
     if (browser) {
       await browser.close()

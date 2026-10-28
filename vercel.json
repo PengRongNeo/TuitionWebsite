@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install",
+  "framework": null
+}

@@ -5,14 +5,31 @@
         <!-- Left: Text content -->
         <div class="gallery-left fade-in">
           <h1 class="gallery-title">Tuition @ Pioneer</h1>
-          <p class="gallery-subtitle">
-            We provide <span class="highlight-orange">quality</span> and <span class="highlight-coral">affordable</span> tuition
-            to help students <span class="highlight-blue">improve</span> with <span class="highlight-yellow">confidence</span>.
+          <div class="gallery-tagline">
+            <p class="tagline-line">
+              <span class="highlight-orange">Gen Z Teachers.</span>
+            </p>
+            <p class="tagline-line">
+              <span class="highlight-blue">Next-Level Learning.</span>
+            </p>
+          </div>
+          <p class="gallery-supporting-text">
+            Relatable teachers. Engaging lessons. Real progress.
           </p>
-          <p class="gallery-mrt-badge" role="note">
-            <span class="gallery-mrt-icon" aria-hidden="true">📍</span>
-            <span>Just 2 mins walk from Pioneer MRT</span>
-          </p>
+          <div class="gallery-selling-badges" role="list" aria-label="Tuition highlights">
+            <span class="selling-badge selling-badge-fees" role="listitem">
+              <span class="selling-badge-icon" aria-hidden="true">💰</span>
+              Affordable Fees
+            </span>
+            <span class="selling-badge selling-badge-classes" role="listitem">
+              <span class="selling-badge-icon" aria-hidden="true">👥</span>
+              Small-Group Classes
+            </span>
+            <span class="selling-badge selling-badge-mrt" role="listitem">
+              <span class="selling-badge-icon" aria-hidden="true">📍</span>
+              2 Min from Pioneer MRT
+            </span>
+          </div>
           <div class="gallery-cta-group">
             <a
               class="btn btn-primary gallery-cta"
@@ -58,7 +75,15 @@
             >
               <div class="carousel-wrapper" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
                 <div v-for="(img, index) in alternativeImages" :key="index" class="carousel-slide">
-                  <img :src="img" class="gallery-img" :alt="`Classroom ${index + 1}`" />
+                  <img
+                    :src="img"
+                    class="gallery-img"
+                    :alt="`Tuition @ Pioneer classroom photo ${index + 1}`"
+                    width="800"
+                    height="500"
+                    :loading="index === 0 ? 'eager' : 'lazy'"
+                    :fetchpriority="index === 0 ? 'high' : undefined"
+                  />
                   <div class="image-overlay">
                     <span class="image-caption">Classroom {{ index + 1 }}</span>
                   </div>
@@ -90,7 +115,6 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-
 
 
 // Import images with explicit file extensions
@@ -226,34 +250,10 @@ onUnmounted(() => {
   container-type: inline-size;
 }
 
-.gallery-mrt-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 var(--spacing-lg);
-  padding: 10px 16px;
-  font-size: clamp(0.875rem, 2vw, 0.95rem);
-  font-weight: 600;
-  line-height: 1.35;
-  color: #3d3d3d;
-  background: linear-gradient(135deg, #FFF8E1, #E3F2FD);
-  border-radius: 999px;
-  border: 1px solid rgba(153, 204, 255, 0.25);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  width: fit-content;
-  max-width: 100%;
-}
-
-.gallery-mrt-icon {
-  font-size: 1rem;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
 .gallery-title {
   font-size: clamp(2.5rem, 6vw, 3.2rem);
   font-weight: 900;
-  margin-bottom: var(--spacing-lg);
+  margin: 0 0 var(--spacing-md);
   line-height: 1.1;
   background: linear-gradient(135deg, var(--color-coral), var(--color-blue), var(--color-yellow));
   -webkit-background-clip: text;
@@ -261,48 +261,74 @@ onUnmounted(() => {
   background-clip: text;
 }
 
-.gallery-subtitle {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-xl);
-  font-weight: 400;
+.gallery-tagline {
+  margin: 0 0 10px;
+  text-align: left;
 }
 
-.gallery-subtitle strong {
-  color: var(--primary-color);
-  font-weight: 700;
+.tagline-line {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-/* Maythematics.com style highlights */
-.gallery-subtitle .highlight-orange {
+.gallery-tagline .highlight-orange {
   color: #FF9933;
-  font-weight: 700;
-  font-size: 1.15em;
 }
 
-.gallery-subtitle .highlight-coral {
-  color: #FF9999;
-  font-weight: 700;
-  font-size: 1.15em;
-}
-
-.gallery-subtitle .highlight-blue {
+.gallery-tagline .highlight-blue {
   color: #99CCFF;
-  font-weight: 700;
-  font-size: 1.15em;
 }
 
-.gallery-subtitle .highlight-purple {
-  color: #CC99FF;
-  font-weight: 700;
-  font-size: 1.15em;
+.gallery-supporting-text {
+  margin: 0 0 var(--spacing-md);
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #4a4a4a;
+  text-align: left;
 }
 
-.gallery-subtitle .highlight-yellow {
-  color: #FFD700;
-  font-weight: 700;
-  font-size: 1.15em;
+.gallery-selling-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 var(--spacing-lg);
+}
+
+.selling-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #3d3d3d;
+  border-radius: 999px;
+  border: 1px solid rgba(153, 204, 255, 0.2);
+  user-select: none;
+}
+
+.selling-badge-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.selling-badge-fees {
+  background: linear-gradient(135deg, #FFF4E6, #FFE8CC);
+}
+
+.selling-badge-classes {
+  background: linear-gradient(135deg, #E8F4FF, #F0E6FF);
+}
+
+.selling-badge-mrt {
+  background: linear-gradient(135deg, #FFF8E1, #E3F2FD);
 }
 
 .gallery-cta-group {
@@ -668,17 +694,24 @@ onUnmounted(() => {
 
   .gallery-title {
     font-size: clamp(2rem, 8vw, 2.5rem);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
   }
 
-  .gallery-subtitle {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-md);
+  .gallery-tagline,
+  .gallery-supporting-text {
+    text-align: center;
   }
 
-  .gallery-mrt-badge {
-    margin-left: auto;
-    margin-right: auto;
+  .tagline-line {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+
+  .gallery-supporting-text {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .gallery-selling-badges {
+    justify-content: center;
     margin-bottom: var(--spacing-md);
   }
 
@@ -749,8 +782,12 @@ onUnmounted(() => {
     font-size: 1.8rem;
   }
 
-  .gallery-subtitle {
-    font-size: 1rem;
+  .tagline-line {
+    font-size: 1.15rem;
+  }
+
+  .gallery-supporting-text {
+    font-size: 0.9rem;
   }
 }
 </style>

@@ -2,16 +2,18 @@
   <header :class="{ scrolled: isScrolled }" class="navbar">
     <div class="container">
       <button class="logo" @click="scrollToSection('gallery')">
-        <span class="logo-icon">🎓</span>
+        <img :src="brandLogo" :alt="brandLogoAlt" class="logo-image" />
         <span class="logo-text">Tuition @ Pioneer</span>
       </button>
 
       <!-- Desktop Navigation -->
-      <nav class="desktop-nav">
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#gallery" @click.prevent="scrollToSection('gallery')" class="nav-link">Home</a>
         <a href="#teachers" @click.prevent="scrollToSection('teachers')" class="nav-link">Teachers</a>
         <a href="#classes" @click.prevent="scrollToSection('classes')" class="nav-link">Classes</a>
-        <a href="#testimonials" @click.prevent="scrollToSection('testimonials')" class="nav-link">Testimonials</a>
-        <a href="#footer" @click.prevent="scrollToSection('footer')" class="nav-link">Contact Us</a>
+        <a href="#results" @click.prevent="scrollToSection('results')" class="nav-link">Results</a>
+        <a href="#reviews" @click.prevent="scrollToSection('reviews')" class="nav-link">Reviews</a>
+        <a href="#find-us" @click.prevent="scrollToSection('find-us')" class="nav-link">Find Us</a>
         <a href="#" @click.prevent="showTerms = true" class="nav-link policy-link">Cancellation Policy</a>
       </nav>
 
@@ -39,12 +41,14 @@
           </div>
           
           <!-- Simple Navigation Links -->
-          <nav class="mobile-nav-links">
+          <nav class="mobile-nav-links" aria-label="Primary mobile">
             <!-- <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Sign Up</a> -->
+            <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Home</a>
             <a href="#teachers" @click.prevent="scrollToSectionMobile('teachers')" class="mobile-nav-link">Teachers</a>
             <a href="#classes" @click.prevent="scrollToSectionMobile('classes')" class="mobile-nav-link">Classes</a>
-            <a href="#testimonials" @click.prevent="scrollToSectionMobile('testimonials')" class="mobile-nav-link">Testimonials</a>
-            <a href="#footer" @click.prevent="scrollToSectionMobile('footer')" class="mobile-nav-link">Contact Us</a>
+            <a href="#results" @click.prevent="scrollToSectionMobile('results')" class="mobile-nav-link">Results</a>
+            <a href="#reviews" @click.prevent="scrollToSectionMobile('reviews')" class="mobile-nav-link">Reviews</a>
+            <a href="#find-us" @click.prevent="scrollToSectionMobile('find-us')" class="mobile-nav-link">Find Us</a>
             <a href="#" @click.prevent="openTermsMobile" class="mobile-nav-link policy-link">Cancellation Policy</a>
           </nav>
         </div>
@@ -117,6 +121,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { brandLogo, brandLogoAlt } from '@/constants/brand'
 
 const menuOpen = ref(false)
 const toggleMenu = () => (menuOpen.value = !menuOpen.value)
@@ -231,8 +236,12 @@ const scrollToSectionMobile = (sectionId) => {
   transform: translateY(0);
 }
 
-.logo-icon {
-  font-size: 1.5rem;
+.logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
 .logo-text {
@@ -620,6 +629,10 @@ const scrollToSectionMobile = (sectionId) => {
 }
 
 @media (max-width: 768px) {
+  .logo-image {
+    height: 34px;
+  }
+
   .desktop-nav {
     display: none;
   }

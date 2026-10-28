@@ -1,12 +1,15 @@
 <template>
   <div id="app">
     <Navbar />
-    <Gallery />
-    <Teachers />
-    <ClassList />
-    <Testimonials />
-    <ProudStudents />
-    <TrustedSchools />
+    <main id="main-content">
+      <Gallery />
+      <WhyChooseUs />
+      <Teachers />
+      <ClassList />
+      <ProudStudents />
+      <TestimonialsAndReviews />
+      <TrustedSchools />
+    </main>
     <FooterSection />
     <WhatsAppButton />
   </div>
@@ -15,10 +18,11 @@
 <script setup>
 import Navbar from './components/NavBar.vue'
 import Gallery from './components/Gallery.vue'
+import WhyChooseUs from './components/WhyChooseUs.vue'
 import Teachers from './components/Teachers.vue'
 import ClassList from './components/ClassList.vue'
-import Testimonials from './components/Testimonials.vue'
 import ProudStudents from './components/ProudStudents.vue'
+import TestimonialsAndReviews from './components/TestimonialsAndReviews.vue'
 import TrustedSchools from './components/TrustedSchools.vue'
 import FooterSection from './components/FooterSection.vue'
 import WhatsAppButton from './components/WhatsappButton.vue'

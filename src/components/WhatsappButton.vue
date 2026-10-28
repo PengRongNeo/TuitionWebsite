@@ -5,7 +5,7 @@
       <div class="chat-bubble" @click.stop>
         <div class="chat-header">
           <div class="chat-logo">
-            <span class="graduation-cap">🎓</span>
+            <img :src="brandLogo" :alt="brandLogoAlt" class="chat-logo-image" />
             <span class="logo-text">Tuition @ Pioneer</span>
           </div>
           <button class="chat-close" @click="closePopup">
@@ -46,6 +46,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { brandLogo, brandLogoAlt } from '@/constants/brand'
 
 const showPopup = ref(false)
 const hasScrolled = ref(false)
@@ -283,15 +284,22 @@ onUnmounted(() => {
   gap: 6px;
 }
 
-.graduation-cap {
-  font-size: 16px;
+.chat-logo-image {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 
 .logo-text {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-primary);
   font-family: var(--font-family-display);
+  background: linear-gradient(135deg, var(--color-coral), var(--color-blue), var(--color-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .chat-close {
@@ -372,6 +380,10 @@ onUnmounted(() => {
     font-size: 13px;
   }
   
+  .chat-logo-image {
+    height: 26px;
+  }
+
   .logo-text {
     font-size: 13px;
   }
@@ -399,6 +411,10 @@ onUnmounted(() => {
     font-size: 12px;
   }
   
+  .chat-logo-image {
+    height: 24px;
+  }
+
   .logo-text {
     font-size: 12px;
   }

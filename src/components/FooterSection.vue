@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="footer section">
+  <footer id="find-us" class="footer section">
     <div class="container">
       <h2 class="section-title">📍 Find Us (2 mins from Pioneer MRT)</h2>
       
@@ -83,6 +83,23 @@
           </div>
         </div>
       </div>
+
+      <div class="footer-final-cta">
+        <h3 class="footer-final-cta-title">Ready to Start Your Learning Journey?</h3>
+        <p class="footer-final-cta-text">
+          Join us at Tuition @ Pioneer and experience a
+          <span class="footer-final-cta-highlight">different way of learning</span>.
+        </p>
+        <a
+          href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-final-cta-btn"
+          @click="trackWhatsappClick('Find Us final CTA')"
+        >
+          Chat With Us
+        </a>
+      </div>
       
       <div class="footer-bottom">
         <div class="footer-socials">
@@ -110,7 +127,7 @@
         </div>
         <div class="footer-info">
           <p class="footer-text">© 2026 Tuition @ Pioneer. All rights reserved.</p>
-          <p class="footer-text">Quality education for confident learners.</p>
+          <p class="footer-text">Gen Z Teachers making a difference.</p>
         </div>
       </div>
     </div>
@@ -393,6 +410,54 @@ const trackWhatsappClick = (label) => {
 
 .social-link:hover .social-icon {
   color: var(--primary-color);
+}
+
+.footer-final-cta {
+  margin-top: var(--spacing-3xl);
+  padding: var(--spacing-2xl);
+  text-align: center;
+  background: linear-gradient(135deg, rgba(230, 213, 245, 0.35), rgba(223, 245, 232, 0.45));
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(153, 204, 255, 0.25);
+}
+
+.footer-final-cta-title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.footer-final-cta-text {
+  margin: 0 0 var(--spacing-lg);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.footer-final-cta-highlight {
+  color: var(--color-orange);
+  font-weight: 600;
+}
+
+.footer-final-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #e6d5f5, #d4c5e8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.footer-final-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
 .footer-bottom {

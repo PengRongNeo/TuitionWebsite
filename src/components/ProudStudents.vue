@@ -1,5 +1,5 @@
 <template>
-  <section id="proud-students" class="proud-students section">
+  <section id="results" class="proud-students section">
     <div class="container">
       <h2 class="section-title">🌟 Proud Student Achievements</h2>
       
@@ -31,6 +31,18 @@
             </div>
           </SwiperSlide>
         </Swiper>
+      </div>
+
+      <div class="results-cta">
+        <h3 class="results-cta-title">Ready to See Your Own Improvement?</h3>
+        <a
+          href="https://wa.me/6591850641?text=Hi%20Teacher%20Karen%2C%20I%20would%20like%20to%20ask%20about%20tuition%20for%20my%20child."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="results-cta-btn"
+        >
+          Chat With Us
+        </a>
       </div>
     </div>
   </section>
@@ -239,6 +251,39 @@ onMounted(() => {
   .achievement-text {
     font-size: 0.95rem;
   }
+}
+
+.results-cta {
+  margin-top: var(--spacing-2xl);
+  text-align: center;
+}
+
+.results-cta-title {
+  margin: 0 0 var(--spacing-md);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.results-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #e6d5f5, #d4c5e8);
+  border: 1px solid rgba(153, 204, 255, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.results-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 480px) {

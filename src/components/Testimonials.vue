@@ -1,7 +1,7 @@
 <template>
-  <section id="testimonials" class="testimonials section">
-    <div class="container">
-      <h2 class="section-title">What Parents Say 💬</h2>
+  <component :is="embedded ? 'div' : 'section'" :id="embedded ? undefined : 'testimonials'" :class="embedded ? 'testimonials testimonials--embedded' : 'testimonials section'">
+    <div :class="embedded ? '' : 'container'">
+      <h2 v-if="!embedded" class="section-title">What Parents Say 💬</h2>
 
       <div class="testimonial-grid">
         <!-- PSLE Testimonials -->
@@ -26,7 +26,7 @@
                   <div class="testimonial-counter">
                     <span class="counter-text">{{ index + 1 }} of {{ psleTestimonials.length }}</span>
                   </div>
-                  <img :src="img" class="testimonial-img" :alt="`PSLE Testimonial ${index + 1}`" />
+                  <img :src="img" class="testimonial-img" :alt="`Parent WhatsApp testimonial — PSLE ${index + 1}`" loading="lazy" decoding="async" />
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -55,7 +55,7 @@
                   <div class="testimonial-counter">
                     <span class="counter-text">{{ index + 1 }} of {{ secondaryTestimonials.length }}</span>
                   </div>
-                  <img :src="img" class="testimonial-img" :alt="`O/N Level Testimonial ${index + 1}`" />
+                  <img :src="img" class="testimonial-img" :alt="`Parent WhatsApp testimonial — O/N Level ${index + 1}`" loading="lazy" decoding="async" />
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -84,7 +84,7 @@
                   <div class="testimonial-counter">
                     <span class="counter-text">{{ index + 1 }} of {{ improvementTestimonials.length }}</span>
                   </div>
-                  <img :src="img" class="testimonial-img" :alt="`Improvement Testimonial ${index + 1}`" />
+                  <img :src="img" class="testimonial-img" :alt="`Parent WhatsApp testimonial — student improvement ${index + 1}`" loading="lazy" decoding="async" />
                 </div>
               </SwiperSlide>
             </Swiper>
@@ -92,10 +92,17 @@
         </div>
       </div>
     </div>
-  </section>
+  </component>
 </template>
 
 <script setup>
+defineProps({
+  embedded: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -137,6 +144,14 @@ const improvementTestimonials = [improvement1, improvement2, improvement3, impro
 .testimonials {
   background: var(--background-primary);
   position: relative;
+}
+
+.testimonials--embedded {
+  background: transparent;
+}
+
+.testimonials--embedded::before {
+  display: none;
 }
 
 .testimonials::before {

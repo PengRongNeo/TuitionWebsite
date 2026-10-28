@@ -1,19 +1,68 @@
 <template>
   <header :class="{ scrolled: isScrolled }" class="navbar">
     <div class="container">
-      <button class="logo" @click="scrollToSection('gallery')">
+      <button class="logo" @click="goHomeLogo">
         <img :src="brandLogo" :alt="brandLogoAlt" class="logo-image" />
         <span class="logo-text">Tuition @ Pioneer</span>
       </button>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav" aria-label="Primary">
-        <a href="#gallery" @click.prevent="scrollToSection('gallery')" class="nav-link">Home</a>
-        <a href="#teachers" @click.prevent="scrollToSection('teachers')" class="nav-link">Teachers</a>
-        <a href="#classes" @click.prevent="scrollToSection('classes')" class="nav-link">Classes</a>
-        <a href="#results" @click.prevent="scrollToSection('results')" class="nav-link">Results</a>
-        <a href="#reviews" @click.prevent="scrollToSection('reviews')" class="nav-link">Reviews</a>
-        <a href="#find-us" @click.prevent="scrollToSection('find-us')" class="nav-link">Find Us</a>
+        <a href="/#gallery" @click.prevent="goToSection('gallery')" class="nav-link">Home</a>
+        <a href="/#teachers" @click.prevent="goToSection('teachers')" class="nav-link">Teachers</a>
+        <div
+          ref="classesNavRef"
+          class="nav-item-dropdown"
+          :class="{ 'nav-item-dropdown--open': classesDropdownOpen }"
+          @mouseenter="openClassesDropdown"
+          @mouseleave="closeClassesDropdown"
+          @focusin="openClassesDropdown"
+          @focusout="onClassesFocusOut"
+        >
+          <div class="nav-item-dropdown__trigger">
+            <a
+              href="/#classes"
+              class="nav-link nav-link--classes-main"
+              @click.prevent="goToSection('classes')"
+            >Classes</a>
+            <button
+              type="button"
+              class="nav-dropdown-chevron-btn"
+              aria-label="Show class programme pages"
+              :aria-expanded="classesDropdownOpen"
+              aria-haspopup="true"
+              @click.stop="toggleClassesDropdown"
+            >
+              <svg class="nav-dropdown-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div
+            v-show="classesDropdownOpen"
+            class="nav-dropdown-panel"
+            role="menu"
+            aria-label="Class programmes"
+          >
+            <template v-for="(item, index) in classesDropdownItems" :key="item.type === 'heading' ? `h-${index}` : item.to">
+              <p v-if="item.type === 'heading'" class="nav-dropdown-heading" role="presentation">
+                {{ item.label }}
+              </p>
+              <RouterLink
+                v-else
+                :to="item.to"
+                class="nav-dropdown-link"
+                role="menuitem"
+                @click="onClassesProgrammeNavigate"
+              >
+                {{ item.label }}
+              </RouterLink>
+            </template>
+          </div>
+        </div>
+        <a href="/#results" @click.prevent="goToSection('results')" class="nav-link">Results</a>
+        <a href="/#reviews" @click.prevent="goToSection('reviews')" class="nav-link">Reviews</a>
+        <a href="/#find-us" @click.prevent="goToSection('find-us')" class="nav-link">Find Us</a>
         <a href="#" @click.prevent="showTerms = true" class="nav-link policy-link">Cancellation Policy</a>
       </nav>
 
@@ -43,12 +92,54 @@
           <!-- Simple Navigation Links -->
           <nav class="mobile-nav-links" aria-label="Primary mobile">
             <!-- <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Sign Up</a> -->
-            <a href="#gallery" @click.prevent="scrollToSectionMobile('gallery')" class="mobile-nav-link">Home</a>
-            <a href="#teachers" @click.prevent="scrollToSectionMobile('teachers')" class="mobile-nav-link">Teachers</a>
-            <a href="#classes" @click.prevent="scrollToSectionMobile('classes')" class="mobile-nav-link">Classes</a>
-            <a href="#results" @click.prevent="scrollToSectionMobile('results')" class="mobile-nav-link">Results</a>
-            <a href="#reviews" @click.prevent="scrollToSectionMobile('reviews')" class="mobile-nav-link">Reviews</a>
-            <a href="#find-us" @click.prevent="scrollToSectionMobile('find-us')" class="mobile-nav-link">Find Us</a>
+            <a href="/#gallery" @click.prevent="goToSectionMobile('gallery')" class="mobile-nav-link">Home</a>
+            <a href="/#teachers" @click.prevent="goToSectionMobile('teachers')" class="mobile-nav-link">Teachers</a>
+            <div class="mobile-nav-classes">
+              <div class="mobile-nav-classes__row">
+                <a
+                  href="/#classes"
+                  class="mobile-nav-link mobile-nav-link--classes-main"
+                  @click.prevent="goToSectionMobile('classes')"
+                >Classes</a>
+                <button
+                  type="button"
+                  class="mobile-nav-submenu-toggle"
+                  :aria-expanded="classesMobileOpen"
+                  aria-label="Expand class programme links"
+                  @click.stop="classesMobileOpen = !classesMobileOpen"
+                >
+                  <svg
+                    class="mobile-nav-submenu-chevron"
+                    :class="{ 'mobile-nav-submenu-chevron--open': classesMobileOpen }"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    aria-hidden="true"
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+              </div>
+              <div v-show="classesMobileOpen" class="mobile-nav-submenu">
+                <template v-for="(item, index) in classesDropdownItems" :key="item.type === 'heading' ? `mh-${index}` : item.to">
+                  <p v-if="item.type === 'heading'" class="mobile-nav-submenu-heading">{{ item.label }}</p>
+                  <RouterLink
+                    v-else
+                    :to="item.to"
+                    class="mobile-nav-sublink"
+                    @click="onClassesProgrammeNavigate"
+                  >
+                    {{ item.label }}
+                  </RouterLink>
+                </template>
+              </div>
+            </div>
+            <a href="/#results" @click.prevent="goToSectionMobile('results')" class="mobile-nav-link">Results</a>
+            <a href="/#reviews" @click.prevent="goToSectionMobile('reviews')" class="mobile-nav-link">Reviews</a>
+            <a href="/#find-us" @click.prevent="goToSectionMobile('find-us')" class="mobile-nav-link">Find Us</a>
             <a href="#" @click.prevent="openTermsMobile" class="mobile-nav-link policy-link">Cancellation Policy</a>
           </nav>
         </div>
@@ -121,10 +212,50 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { brandLogo, brandLogoAlt } from '@/constants/brand'
+import { CLASSES_NAV_DROPDOWN } from '@/config/subjectRoutes'
+
+const route = useRoute()
+const router = useRouter()
 
 const menuOpen = ref(false)
 const toggleMenu = () => (menuOpen.value = !menuOpen.value)
+
+const classesDropdownItems = CLASSES_NAV_DROPDOWN
+const classesDropdownOpen = ref(false)
+const classesMobileOpen = ref(false)
+const classesNavRef = ref(null)
+
+const openClassesDropdown = () => {
+  classesDropdownOpen.value = true
+}
+
+const closeClassesDropdown = () => {
+  classesDropdownOpen.value = false
+}
+
+const toggleClassesDropdown = () => {
+  classesDropdownOpen.value = !classesDropdownOpen.value
+}
+
+const onClassesFocusOut = (event) => {
+  if (classesNavRef.value?.contains(event.relatedTarget)) return
+  closeClassesDropdown()
+}
+
+const onClassesProgrammeNavigate = () => {
+  closeClassesDropdown()
+  classesMobileOpen.value = false
+  menuOpen.value = false
+}
+
+const onDocumentKeydown = (event) => {
+  if (event.key === 'Escape') {
+    if (classesDropdownOpen.value) closeClassesDropdown()
+    if (classesMobileOpen.value) classesMobileOpen.value = false
+  }
+}
 
 const closeMenuOnOutsideClick = (event) => {
   // Only close if clicking on the overlay, not the content
@@ -137,8 +268,14 @@ const isScrolled = ref(false)
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
-onMounted(() => window.addEventListener('scroll', handleScroll))
-onUnmounted(() => window.removeEventListener('scroll', handleScroll))
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  document.addEventListener('keydown', onDocumentKeydown)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('keydown', onDocumentKeydown)
+})
 
 const showTerms = ref(false)
 const closeTerms = () => {
@@ -154,31 +291,37 @@ const openTermsMobile = () => {
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
   if (element) {
-    const offset = 50 // Offset in pixels from the top
+    const offset = 50
     const elementPosition = element.offsetTop - offset
     window.scrollTo({
       top: elementPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 }
 
-const scrollToSectionMobile = (sectionId) => {
-  const element = document.getElementById(sectionId)
-  if (element) {
-    const navbarHeight = 80 // Approximate mobile navbar height
-    const elementPosition = element.offsetTop - navbarHeight
-    
-    // Close menu first
-    menuOpen.value = false
-    
-    // Wait a bit for menu to close, then scroll
-    setTimeout(() => {
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      })
-    }, 100)
+const goHomeLogo = () => {
+  if (route.path === '/') {
+    scrollToSection('gallery')
+  } else {
+    router.push('/')
+  }
+}
+
+const goToSection = (sectionId) => {
+  if (route.path === '/') {
+    scrollToSection(sectionId)
+  } else {
+    router.push({ path: '/', hash: `#${sectionId}` })
+  }
+}
+
+const goToSectionMobile = (sectionId) => {
+  menuOpen.value = false
+  if (route.path === '/') {
+    setTimeout(() => scrollToSection(sectionId), 100)
+  } else {
+    router.push({ path: '/', hash: `#${sectionId}` })
   }
 }
 </script>
@@ -300,6 +443,103 @@ const scrollToSectionMobile = (sectionId) => {
   background: rgba(255, 215, 0, 0.15);
 }
 
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-item-dropdown__trigger {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link--classes-main {
+  padding-right: var(--spacing-xs);
+}
+
+.nav-dropdown-chevron-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs);
+  margin-left: -4px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.nav-dropdown-chevron-btn:hover,
+.nav-item-dropdown--open .nav-dropdown-chevron-btn {
+  color: var(--color-coral);
+  background: rgba(255, 153, 153, 0.1);
+}
+
+.nav-dropdown-chevron-btn:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+.nav-dropdown-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.nav-item-dropdown--open .nav-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 8px;
+  min-width: 260px;
+  z-index: 1100;
+}
+
+.nav-dropdown-heading {
+  margin: var(--spacing-sm) 0 var(--spacing-xs);
+  padding: 0 var(--spacing-xs);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+}
+
+.nav-dropdown-heading:first-child {
+  margin-top: 0;
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.nav-dropdown-link + .nav-dropdown-link {
+  margin-top: var(--spacing-xs);
+}
+
+.nav-dropdown-link:hover {
+  color: var(--color-coral);
+  background: rgba(255, 153, 153, 0.08);
+}
+
+.nav-dropdown-link:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -411,6 +651,80 @@ const scrollToSectionMobile = (sectionId) => {
 .mobile-nav-link.policy-link:hover {
   background: rgba(255, 215, 0, 0.15);
   color: var(--secondary-color);
+}
+
+.mobile-nav-classes__row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-nav-link--classes-main {
+  flex: 1;
+  border-bottom: none;
+}
+
+.mobile-nav-submenu-toggle {
+  flex-shrink: 0;
+  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.mobile-nav-submenu-toggle:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: -2px;
+}
+
+.mobile-nav-submenu-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.mobile-nav-submenu-chevron--open {
+  transform: rotate(180deg);
+}
+
+.mobile-nav-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-md);
+  background: var(--background-accent);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-nav-submenu-heading {
+  margin: var(--spacing-sm) var(--spacing-md) var(--spacing-xs);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+}
+
+.mobile-nav-sublink {
+  display: block;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+}
+
+.mobile-nav-sublink:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+.mobile-nav-sublink:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
 }
 
 .close-btn {

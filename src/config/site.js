@@ -4,10 +4,10 @@ export const SITE_ORIGIN = 'https://tuition-pioneer.com'
 export const SITE_NAME = 'Tuition @ Pioneer'
 
 export const DEFAULT_TITLE =
-  'Tuition @ Pioneer | Small-Group Tuition Near Pioneer MRT'
+  'Tuition Centre in Jurong West, Near Pioneer MRT | Tuition @ Pioneer'
 
 export const DEFAULT_DESCRIPTION =
-  'Looking for tuition near Pioneer MRT? Tuition @ Pioneer offers affordable small-group Math and Science tuition with relatable Gen Z teachers. Enquire today!'
+  'Small-group tuition in Jurong West, just 2 minutes from Pioneer MRT. Primary and Secondary Math, Science, English, O Level Chemistry and Physics. Enquire today.'
 
 export const OG_IMAGE_PATH = '/school-logos/favicon.png'
 

@@ -3,10 +3,33 @@
     <div class="container">
       <h2 class="section-title">Why Choose Us?</h2>
       <div class="why-grid">
-        <article v-for="item in points" :key="item.title" class="why-card">
+        <article v-for="item in simplePoints" :key="item.title" class="why-card">
           <span class="why-icon" aria-hidden="true">{{ item.icon }}</span>
           <h3 class="why-title">{{ item.title }}</h3>
           <p class="why-text">{{ item.text }}</p>
+        </article>
+
+        <article class="why-card">
+          <span class="why-icon" aria-hidden="true">💰</span>
+          <h3 class="why-title">Transparent Pricing</h3>
+          <p class="why-text">
+            Affordable hourly rates
+            <span class="why-accent">without</span>
+            enrolment fees, deposits or material fees.
+          </p>
+        </article>
+
+        <article class="why-card">
+          <span class="why-icon" aria-hidden="true">📅</span>
+          <h3 class="why-title">Flexible Scheduling</h3>
+          <p class="why-text">
+            Convenient lesson arrangements with a straightforward
+            <span class="why-accent">Cancellation Policy</span>.
+          </p>
+          <p class="why-benefit">
+            <span class="why-accent">No more paying</span>
+            for valid missed lessons.
+          </p>
         </article>
       </div>
     </div>
@@ -14,7 +37,7 @@
 </template>
 
 <script setup>
-const points = [
+const simplePoints = [
   {
     icon: '🎓',
     title: 'Gen Z Teachers',
@@ -24,16 +47,6 @@ const points = [
     icon: '👥',
     title: 'Small-Group Learning',
     text: 'Small class sizes for more personalised attention.',
-  },
-  {
-    icon: '💰',
-    title: 'Transparent Pricing',
-    text: 'Affordable hourly rates without enrolment fees, deposits or material fees.',
-  },
-  {
-    icon: '📅',
-    title: 'Flexible Scheduling',
-    text: 'Convenient lesson arrangements with a straightforward cancellation policy.',
   },
 ]
 </script>
@@ -120,6 +133,19 @@ const points = [
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+
+.why-accent {
+  color: var(--color-orange);
+  font-weight: 600;
+}
+
+.why-benefit {
+  margin: var(--spacing-sm) 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 @media (max-width: 1024px) {

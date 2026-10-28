@@ -21,13 +21,16 @@
             <div class="subjects-section">
               <h4 class="subjects-title">Subjects</h4>
               <div class="subjects-list">
-                <span 
-                  class="subject-tag" 
-                  v-for="(subject, i) in item.subjects" 
-                  :key="i"
-                >
-                  {{ subject }}
-                </span>
+                <template v-for="(subject, i) in item.subjects" :key="i">
+                  <RouterLink
+                    v-if="subjectRoute(subject)"
+                    :to="subjectRoute(subject)"
+                    class="subject-tag subject-tag--link"
+                  >
+                    {{ subject }}
+                  </RouterLink>
+                  <span v-else class="subject-tag">{{ subject }}</span>
+                </template>
               </div>
             </div>
             
@@ -51,15 +54,18 @@
 </template>
 
 <script setup>
-const classRates = [
-  { level: 'P1–P2', subjects: ['English', 'Math'], rate: '$22' },
-  { level: 'P3–P4', subjects: ['English', 'Math', 'Science'], rate: '$25' },
-  { level: 'P5–P6', subjects: ['English', 'Math', 'Science'], rate: '$28' },
-  { level: 'Sec 1', subjects: ['Math', 'Science'], rate: '$30' },
-  { level: 'Sec 2', subjects: ['Math', 'Science'], rate: '$32' },
-  { level: 'Sec 3', subjects: ['E-Math', 'A-Math', 'Physics', 'Chemistry'], rate: '$35' },
-  { level: 'Sec 4', subjects: ['E-Math', 'A-Math', 'Physics', 'Chemistry'], rate: '$40' }
-]
+import { getSubjectChipRoute } from '@/config/subjectRoutes'
+import { HOME_CLASS_RATES, homeRateDisplay } from '@/config/tuitionPricing'
+
+function subjectRoute(label) {
+  return getSubjectChipRoute(label)
+}
+
+const classRates = HOME_CLASS_RATES.map((row) => ({
+  level: row.level,
+  subjects: row.subjects,
+  rate: homeRateDisplay(row.hourly),
+}))
 </script>
 
 <style scoped>
@@ -194,13 +200,22 @@ const classRates = [
   font-size: 0.8rem;
   font-weight: 500;
   border: 1px solid var(--border-color);
-  transition: all var(--transition-normal);
 }
 
-.subject-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
+.subject-tag--link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.subject-tag--link:hover {
+  border-color: rgba(255, 153, 51, 0.45);
+  box-shadow: var(--shadow-sm);
+}
+
+.subject-tag--link:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
 }
 
 .rate-section {
@@ -268,7 +283,6 @@ const classRates = [
   font-weight: 500;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .class-grid {
     grid-template-columns: 1fr;
@@ -284,9 +298,13 @@ const classRates = [
     gap: var(--spacing-xs);
   }
 
-  .subject-tag {
+  .subject-tag,
+  .subject-tag--link {
     font-size: 0.85rem;
     padding: var(--spacing-xs) var(--spacing-sm);
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
   }
 
   .info-note {

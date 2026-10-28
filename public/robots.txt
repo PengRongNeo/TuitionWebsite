@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tuition-pioneer.com/sitemap.xml
+Sitemap: https://www.tuitionatpioneer.com/sitemap.xml

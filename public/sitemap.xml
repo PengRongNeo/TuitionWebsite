@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tuition-pioneer.com/</loc>
+    <loc>https://www.tuitionatpioneer.com/</loc>
   </url>
   <url>
-    <loc>https://tuition-pioneer.com/tuition/o-level-chemistry/</loc>
+    <loc>https://www.tuitionatpioneer.com/tuition/lower-secondary-math/</loc>
   </url>
   <url>
-    <loc>https://tuition-pioneer.com/tuition/o-level-physics/</loc>
+    <loc>https://www.tuitionatpioneer.com/tuition/lower-secondary-science/</loc>
   </url>
   <url>
-    <loc>https://tuition-pioneer.com/tuition/o-level-amath/</loc>
+    <loc>https://www.tuitionatpioneer.com/tuition/o-level-chemistry/</loc>
   </url>
   <url>
-    <loc>https://tuition-pioneer.com/tuition/o-level-math/</loc>
+    <loc>https://www.tuitionatpioneer.com/tuition/o-level-physics/</loc>
+  </url>
+  <url>
+    <loc>https://www.tuitionatpioneer.com/tuition/o-level-amath/</loc>
+  </url>
+  <url>
+    <loc>https://www.tuitionatpioneer.com/tuition/o-level-math/</loc>
   </url>
 </urlset>

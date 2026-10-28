@@ -1,5 +1,6 @@
 /** Production site URL — keep in sync with hosting / Search Console property */
-export const SITE_ORIGIN = 'https://tuition-pioneer.com'
+/** Canonical production origin (always use www — keep in sync with Search Console) */
+export const SITE_ORIGIN = 'https://www.tuitionatpioneer.com'
 
 export const SITE_NAME = 'Tuition @ Pioneer'
 

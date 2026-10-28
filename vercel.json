@@ -5,6 +5,24 @@
   "framework": null,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "tuition-pioneer.com" }],
+      "destination": "https://www.tuitionatpioneer.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.tuition-pioneer.com" }],
+      "destination": "https://www.tuitionatpioneer.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "tuitionatpioneer.com" }],
+      "destination": "https://www.tuitionatpioneer.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/locations/jurong-west",
       "destination": "/",
       "permanent": true

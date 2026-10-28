@@ -7,10 +7,10 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sirv from 'sirv'
 import { PRERENDER_ROUTES, SITEMAP_PATHS } from '../src/config/siteRoutes.js'
+import { SITE_ORIGIN } from '../src/config/site.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, '../dist')
-const SITE_ORIGIN = 'https://tuition-pioneer.com'
 
 const SKIP = process.env.SKIP_PRERENDER === '1'
 const IS_VERCEL = Boolean(process.env.VERCEL)
